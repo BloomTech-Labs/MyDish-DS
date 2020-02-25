@@ -1,13 +1,8 @@
 import pandas as pd
 from flask import Flask, jsonify, request
-# import pickle
-
 from google.cloud import vision
 import os
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "ProjectKey.json"
-
-# load model
-# model = pickle.load(open('model2.pkl','rb'))
 
 # app
 app = Flask(__name__)
@@ -27,8 +22,7 @@ def predict():
     image = vision.types.Image()
     image.source.image_uri = uri
     response = client.document_text_detection(image=image)
-    texts = response.text_annotations
-    result = response.full_text_annotation.text
+
     recipe_blocks = len(response.full_text_annotation.pages[0].blocks)
     recipe_texts = []
     
@@ -47,21 +41,7 @@ def predict():
                 blocktext.append(wordtext)
             
         recipe_texts.append(blocktext)
-        
-        
-        
-        
-    
-#     print('Texts:')
-#     for text in texts:
-#         recipe_texts.append('\n"{}"'.format(text.description))
-#         vertices = (['({},{})'.format(vertex.x, vertex.y)
-#                     for vertex in text.bounding_poly.vertices])
-#         print('bounds: {}'.format(','.join(vertices)))
-    
-    
-    
-    
+   
     recipe_dict = {'blocks': recipe_blocks, 'texts': recipe_texts}
 
     # return data
