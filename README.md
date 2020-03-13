@@ -1,6 +1,4 @@
 # Dishify
-
-# Description 
 Application for parsing text from recipe image to be imported into MyDish user's recipe.
 
 # Table of Contents
