@@ -24,6 +24,7 @@ Fork repo and work locally. Upload changes to personal repository and create a p
 
 ## Credits
 Todd Gonzalez - Machine Learning Engineer, Data Engineer.
+
 John Humenczuk - Machine Learning Engineer, Data Engineer.
 
 ## License
