@@ -1,20 +1,19 @@
-# Project name:
-Dishify
+# Dishify
 
-# Description: 
+# Description 
 Application for parsing text from recipe image to be imported into MyDish user's recipe.
 
-# Table of Contents: 
-1 - Installation
-2 - Usage
-3 - Contributing
-4 - Credits
-5 - License
+# Table of Contents
+- Installation
+- Usage
+- Contributing
+- Credits
+- License
 
-# Installation:
+# Installation
 Pull repository into local directory. Create a new environment using desired handler. Required libraries will be installed through the requirements.txt file.
 
-# Usage:
+# Usage
 - End user must upload an image to MyDish APP.
 - MyDish APP sends a request to Dishify API Gateway with the image's URI.
 - API Gateway handles the request and calls the Dishify function.
@@ -22,12 +21,12 @@ Pull repository into local directory. Create a new environment using desired han
 - Dishify returns Vision API's parsed text in JSON dictionary format.
 - Future release: Dishify returns text in "Ingredients" and "Instructions" format ready for MyDish use.
 
-# Contributing:
+# Contributing
 Fork repo and work locally. Upload changes to personal repository and create a pull request to this branch.
 
-# Credits:
+# Credits
 Todd Gonzalez - Machine Learning Engineer, Data Engineer.
 John Humenczuk - Machine Learning Engineer, Data Engineer.
 
-# License:
+# License
 MIT
