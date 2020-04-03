@@ -1,4 +1,6 @@
 from google.cloud import vision
+import processing
+import json
 import os
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "key.json"
@@ -17,26 +19,11 @@ def image_parse(uri):
     image.source.image_uri = uri
     response = client.document_text_detection(image=image)
 
-    recipe_blocks = len(response.full_text_annotation.pages[0].blocks)
-    recipe_texts = []
+    texts = response.text_annotations
+    recipe = str(texts[0].description)
 
-    for block in response.full_text_annotation.pages[0].blocks:
+    response = processing.main_function(recipe)
 
-        blocktext = []
+    app_json = json.dumps(response)
+    return app_json
 
-        for paragraph in block.paragraphs:
-
-            for word in paragraph.words:
-
-                wordtext = ''
-                for symbol in word.symbols:
-                    wordtext += symbol.text
-
-                blocktext.append(wordtext)
-
-        recipe_texts.append(blocktext)
-
-    recipe_dict = {'blocks': recipe_blocks, 'texts': recipe_texts}
-
-    # return data
-    return recipe_dict
