@@ -2,53 +2,53 @@
 import string
 import re
 
-recipe = """
-Buffalo Cauliflower Bites
-There's nothing like settling into a plate of spicy, tangy wings while watching a
-game. But let's be honest—the sauce is usually better than the chicken! In my
-Plant Paradox-approved version, you can still enjoy the addictive flavor and
-crunch of your favorite game day treat-without the halftime stomachache!
-SERVES 4 TO 6
-1. Preheat the oven to 450°F.
-FOR THE BUFFALO SAUCE
-1 cup Frank's Red Hot Sauce
-2 teaspoons avocado oil
-or ghee
-1 tablespoon coconut aminos
-1 teaspoon apple cider vinegar
-2. First, make the buffalo sauce: combine the hot sauce,
-avocado oil or ghee, coconut aminos, and apple cider
-vinegarin a glass jar with a lid and shake well. Refrigerate
-until needed.
-3. Drizzle a baking sheet liberally with olive oil, or line
-with parchment. Set aside.
-1 medium head of cauliflower,
-chopped
-2 tablespoons extra-virgin
-olive oil, plus more for
-baking sheet
-2 tablespoons cassava flour
-1 teaspoon iodized sea salt
-1 teaspoon ground black
-pepper
-2 teaspoons garlic powder
-cup buffalo sauce (recipe
-above)
-Plain coconut yogurt, for
-dipping
-4. Toss the cauliflower, olive oil, cassava flour, and spices
-together in a large bowl until cauliflower is evenly
-coated.
-5. Transfer to a baking sheet and bake for 30 minutes,
-turning every 10 minutes so the cauliflower crisps on
-all sides.
-6. Brush with the buffalo sauce, then bake an additional
-10 minutes.
-7. Serve with yogurt and any extra buffalo sauce for dip-
-ping.
-APPETIZERS AND SNACKS
-91
-"""
+# recipe = """
+# Buffalo Cauliflower Bites
+# There's nothing like settling into a plate of spicy, tangy wings while watching a
+# game. But let's be honest—the sauce is usually better than the chicken! In my
+# Plant Paradox-approved version, you can still enjoy the addictive flavor and
+# crunch of your favorite game day treat-without the halftime stomachache!
+# SERVES 4 TO 6
+# 1. Preheat the oven to 450°F.
+# FOR THE BUFFALO SAUCE
+# 1 cup Frank's Red Hot Sauce
+# 2 teaspoons avocado oil
+# or ghee
+#  1tablespoon coconut aminos
+# 1 teaspoon apple cider vinegar
+# 2. First, make the buffalo sauce: combine the hot sauce,
+# avocado oil or ghee, coconut aminos, and apple cider
+# vinegarin a glass jar with a lid and shake well. Refrigerate
+# until needed.
+# 3. Drizzle a baking sheet liberally with olive oil, or line
+# with parchment. Set aside.
+# 1 medium head of cauliflower,
+# chopped
+# 2 tablespoons extra-virgin
+# olive oil, plus more for
+# baking sheet
+# 2 tablespoons cassava flour
+# 1 teaspoon iodized sea salt
+# 1 teaspoon ground black
+# pepper
+# 2 teaspoons garlic powder
+# cup buffalo sauce (recipe
+# above)
+# Plain coconut yogurt, for
+# dipping
+# 4. Toss the cauliflower, olive oil, cassava flour, and spices
+# together in a large bowl until cauliflower is evenly
+# coated.
+# 5. Transfer to a baking sheet and bake for 30 minutes,
+# turning every 10 minutes so the cauliflower crisps on
+# all sides.
+# 6. Brush with the buffalo sauce, then bake an additional
+# 10 minutes.
+# 7. Serve with yogurt and any extra buffalo sauce for dip-
+# ping.
+# APPETIZERS AND SNACKS
+# 91
+# """
 
 measurementUnits = ['teaspoons', 'tablespoons', 'cups', 'containers', 'packets', 'bags', 'quarts', 'pounds', 'cans',
                     'bottles',
@@ -188,7 +188,7 @@ def checking_plurals(string, plural_list):
     return None
 
 
-def match_and_split(matches):
+def match_and_split(matches, recipe):
     split_matches = []
     i = 0
     match_locations = []
@@ -290,11 +290,12 @@ def final_check(matches):
 #     return matches
 
 def main_function(recipe):
+
     pattern = re.compile(r'[0-9]+')
 
     matches = pattern.finditer(recipe)
 
-    split_matches = match_and_split(matches)
+    split_matches = match_and_split(matches, recipe)
 
     split_matches = cleaner(split_matches)
 
