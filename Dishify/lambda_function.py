@@ -1,6 +1,7 @@
 import predict
 import json
 
+
 def lambda_handler(event, context):
     '''
     AWS Lambda function handler. Executes predict.py when API Gateway receives a request.
@@ -15,4 +16,4 @@ def lambda_handler(event, context):
         'body': recipe
     }
 
-    context.succeed("done");
+    context.succeed("done")
