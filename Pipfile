@@ -28,6 +28,8 @@ beautifulsoup4 = "*"
 flask-cors = "*"
 flask-caching = "*"
 python-decouple = "*"
+sqlalchemy = "*"
+numpy = "*"
 
 [requires]
 python_version = "3.7"

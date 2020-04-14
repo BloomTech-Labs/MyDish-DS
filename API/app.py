@@ -8,7 +8,7 @@ import logging
 
 # setting up for local testing, wnat to be able to log the database
 """
-Want to be able to test locally and log information for debugging 
+We want to be able to test locally and log information for debugging
 """
 
 # Local sqlite3 database
@@ -19,7 +19,7 @@ def create_app(test_config=None):
     """
     Creates app
     """
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask()
     app.config.from_mapping(
         # Make sure to change debug to False in production env
         DEBUG=config('DEBUG', default=False),
@@ -40,3 +40,9 @@ def create_app(test_config=None):
 
     # Enable caching
     cache = Cache(app)
+
+    # Blueprints: Connecting all the routes(Endpoints) we create.
+
+    app.register_blueprints(vision_routes)
+
+    return app
