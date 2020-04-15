@@ -12,7 +12,7 @@ We want to be able to test locally and log information for debugging
 """
 
 # Local sqlite3 database
-local_db = 'test.sqlite3'
+local_db_name = 'test.sqlite3'
 
 
 def create_app(test_config=None):

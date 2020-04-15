@@ -13,7 +13,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "key.json"
 vision_routes = Blueprint("vision_routes", __name__)
 
 
-@visions_enpoint.routes('/visions')
+@visions_enpoint.route('/visions')
 def image_parse(uri):
     '''
     Makes a call to Google Vision's OCR API and parses all identifiable text from an image file.
