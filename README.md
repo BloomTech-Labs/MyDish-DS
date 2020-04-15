@@ -1,6 +1,5 @@
 # 1️⃣🍔 MyDish
 
-You can find the project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
 
 ## 2️⃣ Installation and Set-Up on your local machine
 ### Step 1: Clone the master branch repo into your local machine
@@ -14,7 +13,7 @@ You can find the project at [🚫URL NAME GOES HERE](🚫copy and paste URL here
 All developmental code should be pushed to the 'staging' branch, not masters.
 Follow the Semantic Commits format for commit messages: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
 
-'''bash
+
 ### Step 1: Make sure you're on the master branch
 > git branch
 ### Step 2: Create the staging branch in your local machine
@@ -25,27 +24,28 @@ Follow the Semantic Commits format for commit messages: https://gist.github.com/
 > git branch --set-upstream-to=origin/master staging
 ### Step 5: During Development, push code to staging until api is ready for deployment.
 > git push origin staging
-'''
+
 
 
 ## 4️⃣ Contributors
 
 🤖 Labs 21 Contributors
 
-|                                   [Todd Gonzalez](https://github.com/ToddMG)                                        |                                   [Scott Lightfoot](https://github.com/ScottLightfoot)                                        |                                   [John Wesley](https://github.com/johnwesleyharding)                                        |                                   [Ronny Salvarado](https://github.com/RonnySAlvarado)                    |                    
+|                                       [Student 1](https://github.com/ToddMG)                                        |                                       [Student 2](https://github.com/ScottLightfoot)                                        |                                       [Student 3](https://github.com/johnwesleyharding)                                        |                                       [Student 4](https://github.com/RonnySAlvarado)                                        |                                       [Student 5](https://github.com/)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
+|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/ToddMG)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/ScottLightfoot)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/johnwesleyharding)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/RonnySAlvarado)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ToddMG)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ScottLightfoot)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/johnwesleyharding)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/RonnySAlvarado)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+
+
 
 
 🤖 Labs 23 Contributors
 
-|                                   [Neal Whitlock](https://github.com/NealWhitlock)                                        |                                   [Robin Srimal](https://github.com/RobinSrimal)                                        |                                   [Yoni Pineda](https://github.com/Yonipineda)                                        |                                   [Maria Yasar](https://github.com/mariayasar)                   
-|                                   [Christopher Scott](https://github.com/hoops92)       |                                                         
+|                                       [Student 1](https://github.com/NealWhitlock)                                        |                                       [Student 2](https://github.com/RobinSrimal)                                        |                                       [Student 3](https://github.com/Yonipineda)                                        |                                       [Student 4](https://github.com/mariayasar)                                        |                                       [Student 5](https://github.com/hoops92)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
+|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/NealWhitlock)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/RobinSrimal)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/Yonipineda)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/mariayasar)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/hoops92)                       |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NealWhitlock)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/RobinSrimal)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Yonipineda)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/mariayasar)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/hoops92)             |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
 
 ## Project Overview
@@ -55,9 +55,7 @@ Ask your TL or SL for access to Notion and/or Trello.
 
 ♻️ [Product Canvas](https://www.notion.so/f1b05a1a0f1a4b648d3a50bb25319d41?v=3b36ae1ea1744146b3147a8e2f9dc043)
 
-
-
-1️⃣ [Deployed Front End](🚫 http://mydish-ingredientprediction.eba-wmm2grnv.us-east-2.elasticbeanstalk.com/)
+📡 [Deployed Front End](http://mydish-ingredientprediction.eba-wmm2grnv.us-east-2.elasticbeanstalk.com/)
 
 ### Tech Stack
 
