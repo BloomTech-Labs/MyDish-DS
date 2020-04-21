@@ -32,47 +32,59 @@
 
 ### Installation and Set-Up
 
-#### Step 1: Clone the master branch repo into your local machine
+Step 1: Clone the master branch repo into your local machine
 > git clone https://github.com/Lambda-School-Labs/MyDish-DS.git
 
-#### Step 2: Install the virtual env on the main MyDish Directory
-#### It should be the directory containing the pipfile and pipfile.lock
-#### Once you're in that directory, install the packages.
+
+Step 2: Install the virtual env on the main MyDish Directory,
+It should be the directory containing the pipfile and pipfile.lock.
+Once you're in that directory, install the packages.
 > pipenv install
 
-#### Other options: Install using the requirements.txt file
+
+Other options: Install using the requirements.txt file
 > pipenv install -r requirements.txt
 
 Note: If it does not install, it is most likely due to an out-dated package.
 Check the versions of the packages, delete if not needed, or specify the versions.
 
-#### Step 3: Open the env
+
+Step 3: Open the env
 > pipenv shell
 
-#### Additional Step:  Creating a conda env using requirements.txt
+
+Additional Step:  Creating a conda env using requirements.txt
 
 Create the conda environment and specify python version(3.7):
 > conda create -n mydish python==3.7
 
+
 Activate the newly created env:
 > conda activate mydish
+
 
 Install the requirements.txt file:
 > pip install -r requirements.txt
 
+
 Install kernel specification:
 > python -m ipykernel install --user --name mydish
+
 
 Now you can deactivate the env and start using jupyter notebooks/lab:
 > conda deactivate
 
+
 and, open up a notebook.
+
 
 To install or uninstall packages, open up the env:
 > conda activate MyDish
 
+
 then, install or uninstall a package
 > conda install/uninstall some_package
+
 
 Useful [Lambda Lecture](https://www.youtube.com/watch?v=_VGKzkAEvU0&feature=youtu.be) on how to do this.
 
@@ -82,17 +94,21 @@ Note: Link may not work. If so, refer to the tool-kit in unit-4/sprint-1/day-1 a
 All developmental code should be pushed to the 'staging' branch, not masters.
 Follow the Semantic Commits format for [Commit Messages](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
 
-
-#### Step 1: Make sure you're on the master branch
+Step 1: Make sure you're on the master branch
 > git branch
-#### Step 2: Create the staging branch in your local machine
+
+Step 2: Create the staging branch in your local machine
 > git checkout -b staging
-#### Step 3: If there is an existing staging branch on the github repo, pull
+
+Step 3: If there is an existing staging branch on the github repo, pull
 > git pull origin staging
-#### Step 4: Set staging branch to track master branch
+
+Step 4: Set staging branch to track master branch
 > git branch --set-upstream-to=origin/master staging
-#### Step 5: During Development, push code to staging until api is ready for deployment.
+
+Step 5: During Development, push code to staging until api is ready for deployment.
 > git push origin staging
+
 
 Some extra tips on Git WorkFlow:
 
@@ -102,26 +118,33 @@ Instead, create another branch that tracks staging, push with your new branch an
 request a team member to review your code and merge with staging. This also applies
 with staging and masters.
 
-#### From staging, create another branch
+From staging, create another branch:
 > git checkout -b feature/new_branch
 
-#### Track staging
+
+Track staging:
 > git branch --set-upstream-to=origin/staging feature/new_branch
 
-#### Push the feature branch with your added modifications and request a review
+
+Push the feature branch with your added modifications and request a review:
 > git push origin HEAD or git push origin feature/new_branch
+
 
 Once its been reviewed and merged, you can delete the branch in the Github Repo and
 in your local machine by:
 
-#### Leave the branch by checking into staging
+
+Leave the branch by checking into staging
 > git checkout staging
 
-#### Delete the feature branch
+
+Delete the feature branch
 >git branch -d feature/new_branch or git branch -D feature/new_branch
 
-#### Pull the new changes in the staging branch
+
+Pull the new changes in the staging branch
 > git pull origin HEAD or git pull origin staging
+
 
 There are more commands you can use for Git, checkout some of these resourses:
 
