@@ -1,6 +1,6 @@
 # 🍔 MyDish
 
-## Table Of Contents
+## Content
 - [Project Overview](#Project Overview)
 
   - [Installation and Set-Up](#Installation and Set-Up)
@@ -26,27 +26,30 @@
   - [Pull Request Guidelines](#Pull Request Guidelines)
   - [Attribution](#Attribution)
 
-# Project Overview
 
-## Installation and Set-Up
-### Step 1: Clone the master branch repo into your local machine
+
+## Project Overview
+
+### Installation and Set-Up
+
+#### Step 1: Clone the master branch repo into your local machine
 > git clone https://github.com/Lambda-School-Labs/MyDish-DS.git
 
-### Step 2: Install the virtual env on the main MyDish Directory
+#### Step 2: Install the virtual env on the main MyDish Directory
 #### It should be the directory containing the pipfile and pipfile.lock
 #### Once you're in that directory, install the packages.
 > pipenv install
 
-### Other options: Install using the requirements.txt file
+#### Other options: Install using the requirements.txt file
 > pipenv install -r requirements.txt
 
 Note: If it does not install, it is most likely due to an out-dated package.
 Check the versions of the packages, delete if not needed, or specify the versions.
 
-### Step 3: Open the env
+#### Step 3: Open the env
 > pipenv shell
 
-### Additional Step:  Creating a conda env using requirements.txt
+#### Additional Step:  Creating a conda env using requirements.txt
 
 Create the conda environment and specify python version(3.7):
 > conda create -n mydish python==3.7
@@ -75,20 +78,20 @@ Useful [Lambda Lecture](https://www.youtube.com/watch?v=_VGKzkAEvU0&feature=yout
 
 Note: Link may not work. If so, refer to the tool-kit in unit-4/sprint-1/day-1 and look for the DS11 Lecture video.
 
-## Git WorkFlow
+### Git WorkFlow
 All developmental code should be pushed to the 'staging' branch, not masters.
 Follow the Semantic Commits format for [Commit Messages](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
 
 
-### Step 1: Make sure you're on the master branch
+#### Step 1: Make sure you're on the master branch
 > git branch
-### Step 2: Create the staging branch in your local machine
+#### Step 2: Create the staging branch in your local machine
 > git checkout -b staging
-### Step 3: If there is an existing staging branch on the github repo, pull
+#### Step 3: If there is an existing staging branch on the github repo, pull
 > git pull origin staging
-### Step 4: Set staging branch to track master branch
+#### Step 4: Set staging branch to track master branch
 > git branch --set-upstream-to=origin/master staging
-### Step 5: During Development, push code to staging until api is ready for deployment.
+#### Step 5: During Development, push code to staging until api is ready for deployment.
 > git push origin staging
 
 Some extra tips on Git WorkFlow:
@@ -99,25 +102,25 @@ Instead, create another branch that tracks staging, push with your new branch an
 request a team member to review your code and merge with staging. This also applies
 with staging and masters.
 
-### From staging, create another branch
+#### From staging, create another branch
 > git checkout -b feature/new_branch
 
-### Track staging
+#### Track staging
 > git branch --set-upstream-to=origin/staging feature/new_branch
 
-### Push the feature branch with your added modifications and request a review
+#### Push the feature branch with your added modifications and request a review
 > git push origin HEAD or git push origin feature/new_branch
 
 Once its been reviewed and merged, you can delete the branch in the Github Repo and
 in your local machine by:
 
-### Leave the branch by checking into staging
+#### Leave the branch by checking into staging
 > git checkout staging
 
-### Delete the feature branch
+#### Delete the feature branch
 >git branch -d feature/new_branch or git branch -D feature/new_branch
 
-### Pull the new changes in the staging branch
+#### Pull the new changes in the staging branch
 > git pull origin HEAD or git pull origin staging
 
 There are more commands you can use for Git, checkout some of these resourses:
@@ -125,7 +128,7 @@ There are more commands you can use for Git, checkout some of these resourses:
 🧩 [Atlassian](https://www.atlassian.com/git/tutorials/comparing-workflows)
 
 
-## Contributors
+### Contributors
 
 🤖 Labs 21 Contributors
 
@@ -146,7 +149,7 @@ There are more commands you can use for Git, checkout some of these resourses:
 |                         [<img src="https://github.com/favicon.ico" width="15">](https://github.com/NealWhitlock)                          |                     [<img src="https://github.com/favicon.ico" width="15">](https://github.com/RobinSrimal)                      |                         [<img src="https://github.com/favicon.ico" width="15">](https://github.com/Yonipineda)                          |                        [<img src="https://github.com/favicon.ico" width="15">](https://github.com/hoops92)                        |
 | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) |
 
-## Project Guide
+### Project Guide
 Helpful Resources
 
 Note: Ask your TL or SL for access to Notion and/or Trello.
@@ -165,7 +168,7 @@ Note: Ask your TL or SL for access to Notion and/or Trello.
 
 📈 [Labs DS Tips](https://lambda-school-labs.github.io/ds/)
 
-## Tech Stack
+### Tech Stack
 
 🐍 [Python 3.7](https://www.python.org/downloads/release/python-374/)
 
@@ -175,13 +178,15 @@ Note: Ask your TL or SL for access to Notion and/or Trello.
 
 🥜 [AWS ElasticBeanstalk](https://aws.amazon.com/elasticbeanstalk/)
 
-# API Overview
 
-## Architecture
 
-## Endpoints
+## API Overview
 
-## Deployed Links
+### Architecture
+
+### Endpoints
+
+### Deployed Links
 
 There is only one current deployed version which can be found locally in the Dishify/ Directory.
 
@@ -195,16 +200,11 @@ After /dishify, in the url, add ?imageURL=:
 and, give it a url of an image with text:
 > https://3z6kv0n0v6.execute-api.us-east-2.amazonaws.com/test/dishify?imageURL=https://cdn.shopify.com/s/files/1/1133/5284/products/9781771644761_002_iart.jpg
 
-
-### AWS Brief Guide
-
-
-
-## Local Testing
+### Local Testing
 
 On running the API locally using [Flask](https://flask.palletsprojects.com/en/1.1.x/) and the [Unittests](https://docs.python.org/3/library/unittest.html):
 
-### Run the API locally
+#### Run the API locally
 
 If not in the API/ directory:
 > cd APi/
@@ -212,25 +212,25 @@ If not in the API/ directory:
 Run app.py:
 > python app.py
 
-### Execute the unittests
+#### Execute the unittests
 > python -m unittest discover
 
-## WEB Documentation
+### WEB Documentation
 
 See [Backend Documentation](https://github.com/Lambda-School-Labs/mydish-be/blob/master/README.md) for details on the backend of our project.
 
 See [Front End Documentation](https://github.com/Lambda-School-Labs/mydish-fe/blob/master/README.md) for details on the front end of our project.
 
 
-# Extra Information
+## Extra Information
 
-## Contributing
+### Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
 Please note we have a [code of conduct](./code_of_conduct.md.md). Please follow it in all your interactions with the project.
 
-## Issue/Bug Request
+### Issue/Bug Request
 
  **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
  - Check first to see if your issue has already been reported.
@@ -238,17 +238,17 @@ Please note we have a [code of conduct](./code_of_conduct.md.md). Please follow 
  - Create a live example of the problem.
  - Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.
 
-## Feature Requests
+### Feature Requests
 
 We would love to hear from you about new features which would improve this app and further the aims of our project. Please provide as much detail and information as possible to show us why you think your new feature should be implemented.
 
-## Pull Requests
+### Pull Requests
 
 If you have developed a patch, bug fix, or new feature that would improve this app, please submit a pull request. It is best to communicate your ideas with the developers first before investing a great deal of time into a pull request to ensure that it will mesh smoothly with the project.
 
 Remember that this project is licensed under the MIT license, and by submitting a pull request, you agree that your work will be, too.
 
-## Pull Request Guidelines
+### Pull Request Guidelines
 
 - Ensure any install or build dependencies are removed before the end of the layer when doing a build.
 - Update the README.md with details of changes to the interface, including new plist variables, exposed ports, useful file locations and container parameters.
@@ -256,6 +256,6 @@ Remember that this project is licensed under the MIT license, and by submitting 
 - Include the relevant issue number, if applicable.
 - You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
 
-## Attribution
+### Attribution
 
 These contribution guidelines have been adapted from [this good-Contributing.md-template](https://gist.github.com/PurpleBooth/b24679402957c63ec426).
