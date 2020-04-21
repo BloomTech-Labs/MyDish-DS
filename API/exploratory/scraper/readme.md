@@ -1,3 +1,3 @@
 # Customized Scrapers
 
-A Folder containg customized scrapers for a variety of data types.
+A Folder containing customized scrapers for a variety of data types.

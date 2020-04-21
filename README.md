@@ -1,29 +1,24 @@
 # 🍔 MyDish
 
 ## Content
-- [Project Overview](#Project Overview)
-
-  - [Installation and Set-Up](#Installation and Set-Up)
-  - [Git WorkFlow](#Git WorkFlow)
+- [Project Overview](#Project-Overview)
+  - [Installation and Set-Up](#Installation-and-Set-Up)
+  - [Git WorkFlow](#Git-WorkFlow)
   - [Contributors](#Contributors)
-  - [Project Guide](#Project Guide)
-  - [Tech Stack](#Tech Stack)
-
-- [API Overview](#API Overview)
-
+  - [Project Guide](#Project-Guide)
+  - [Tech Stack](#Tech-Stack)
+- [API Overview](#API-Overview)
   - [Architecture](#Architecture)
   - [Endpoints](#Endpoints)
-  - [Deployed Links](#Deployed Links)
-  - [Local Testing](#Local Testing)
-  - [WEB Documentation](#WEB Documentation)
-
-- [Extra Information](#Extra Information)
-
+  - [AWS Guide](#AWS-Guide)
+  - [Local Testing](#Local-Testing)
+  - [WEB Documentation](#WEB-Documentation)
+- [Extra Information](#Extra-Information)
   - [Contributing](#Contributing)
-  - [Issue/Bug Request](#Issue/Bug Request)
-  - [Feature Requests](#Feature Requests)
-  - [Pull Requests](#Pull Requests)
-  - [Pull Request Guidelines](#Pull Request Guidelines)
+  - [Issue/Bug Request](#Issue-Bug-Request)
+  - [Feature Requests](#Feature-Requests)
+  - [Pull Requests](#Pull-Requests)
+  - [Pull Request Guidelines](#Pull-Request-Guidelines)
   - [Attribution](#Attribution)
 
 
@@ -32,57 +27,57 @@
 
 ### Installation and Set-Up
 
-Step 1: Clone the master branch repo into your local machine
+#### Step 1: Clone the master branch repo into your local machine
 > git clone https://github.com/Lambda-School-Labs/MyDish-DS.git
 
 
-Step 2: Install the virtual env on the main MyDish Directory,
+#### Step 2: Install the virtual env on the main MyDish Directory,
 It should be the directory containing the pipfile and pipfile.lock.
 Once you're in that directory, install the packages.
 > pipenv install
 
 
-Other options: Install using the requirements.txt file
+#### Other options: Install using the requirements.txt file
 > pipenv install -r requirements.txt
 
 Note: If it does not install, it is most likely due to an out-dated package.
 Check the versions of the packages, delete if not needed, or specify the versions.
 
 
-Step 3: Open the env
+#### Step 3: Open the env
 > pipenv shell
 
 
-Additional Step:  Creating a conda env using requirements.txt
+#### Additional Step:  Creating a conda env using requirements.txt
 
-Create the conda environment and specify python version(3.7):
+#### Create the conda environment and specify python version(3.7):
 > conda create -n mydish python==3.7
 
 
-Activate the newly created env:
+#### Activate the newly created env:
 > conda activate mydish
 
 
-Install the requirements.txt file:
+#### Install the requirements.txt file:
 > pip install -r requirements.txt
 
 
-Install kernel specification:
+#### Install kernel specification:
 > python -m ipykernel install --user --name mydish
 
 
-Now you can deactivate the env and start using jupyter notebooks/lab:
+#### Now you can deactivate the env and start using jupyter notebooks/lab:
 > conda deactivate
 
 
 and, open up a notebook.
 
 
-To install or uninstall packages, open up the env:
+#### To install or uninstall packages, open up the env:
 > conda activate MyDish
 
 
-then, install or uninstall a package
+#### Then, install or uninstall a package
 > conda install/uninstall some_package
 
 
@@ -94,19 +89,19 @@ Note: Link may not work. If so, refer to the tool-kit in unit-4/sprint-1/day-1 a
 All developmental code should be pushed to the 'staging' branch, not masters.
 Follow the Semantic Commits format for [Commit Messages](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
 
-Step 1: Make sure you're on the master branch
+#### Step 1: Make sure you're on the master branch
 > git branch
 
-Step 2: Create the staging branch in your local machine
+#### Step 2: Create the staging branch in your local machine
 > git checkout -b staging
 
-Step 3: If there is an existing staging branch on the github repo, pull
+#### Step 3: If there is an existing staging branch on the github repo, pull
 > git pull origin staging
 
-Step 4: Set staging branch to track master branch
+#### Step 4: Set staging branch to track master branch
 > git branch --set-upstream-to=origin/master staging
 
-Step 5: During Development, push code to staging until api is ready for deployment.
+#### Step 5: During Development, push code to staging until api is ready for deployment.
 > git push origin staging
 
 
@@ -118,15 +113,15 @@ Instead, create another branch that tracks staging, push with your new branch an
 request a team member to review your code and merge with staging. This also applies
 with staging and masters.
 
-From staging, create another branch:
+#### From staging, create another branch:
 > git checkout -b feature/new_branch
 
 
-Track staging:
+#### Track staging:
 > git branch --set-upstream-to=origin/staging feature/new_branch
 
 
-Push the feature branch with your added modifications and request a review:
+#### Push the feature branch with your added modifications and request a review:
 > git push origin HEAD or git push origin feature/new_branch
 
 
@@ -134,15 +129,15 @@ Once its been reviewed and merged, you can delete the branch in the Github Repo 
 in your local machine by:
 
 
-Leave the branch by checking into staging
+#### Leave the branch by checking into staging
 > git checkout staging
 
 
-Delete the feature branch
+#### Delete the feature branch
 >git branch -d feature/new_branch or git branch -D feature/new_branch
 
 
-Pull the new changes in the staging branch
+#### Pull the new changes in the staging branch
 > git pull origin HEAD or git pull origin staging
 
 
@@ -206,22 +201,25 @@ Note: Ask your TL or SL for access to Notion and/or Trello.
 ## API Overview
 
 ### Architecture
+Not Yet Implemented.
 
 ### Endpoints
-
-### Deployed Links
 
 There is only one current deployed version which can be found locally in the Dishify/ Directory.
 
 [Deployed AWS Endpoint](https://3z6kv0n0v6.execute-api.us-east-2.amazonaws.com/test/dishify)
 
+
+### AWS Guide
+
 To use this endpoint, give the api an image url, like this [one](https://cdn.shopify.com/s/files/1/1133/5284/products/9781771644761_002_iart.jpg):
 
-After /dishify, in the url, add ?imageURL=:
+#### After /dishify, in the url, add ?imageURL=:
 > https://3z6kv0n0v6.execute-api.us-east-2.amazonaws.com/test/dishify?imageURL=
 
-and, give it a url of an image with text:
+#### And, give it a url of an image with text:
 > https://3z6kv0n0v6.execute-api.us-east-2.amazonaws.com/test/dishify?imageURL=https://cdn.shopify.com/s/files/1/1133/5284/products/9781771644761_002_iart.jpg
+
 
 ### Local Testing
 
@@ -253,7 +251,7 @@ When contributing to this repository, please first discuss the change you wish t
 
 Please note we have a [code of conduct](./code_of_conduct.md.md). Please follow it in all your interactions with the project.
 
-### Issue/Bug Request
+### Issue Bug Request
 
  **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
  - Check first to see if your issue has already been reported.
