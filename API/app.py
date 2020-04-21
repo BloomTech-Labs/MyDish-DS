@@ -1,48 +1,87 @@
-import os
-from flask import Flask, json, jsonify, request
-from flask_cors import CORS
-from flask_caching import Cache
-from decouple import config
-import logging
+import numpy as np
+import json
+
+from flask import Flask, jsonify, request
+from tensorflow.keras.models import load_model
+
+'''
+ScottLightfoot Baseline Model. We will consider this our baseline instead of
+the Dishify api. 
+'''
+
+application = Flask(__name__)
+
+with open('ingr_int.json') as json_file:
+    ingr_int = json.load(json_file)
+with open('int_ingr.json') as json_file:
+    int_ingr = json.load(json_file)
+
+my_model = load_model('baseline_pred.h5')
+max_pred_length = 10
+
+def sample(preds, temperature=1.0):
+    # helper function to sample an index from a probability array
+    preds = np.asarray(preds).astype('float64')
+    preds = np.log(preds) / temperature
+    exp_preds = np.exp(preds)
+    preds = exp_preds / np.sum(exp_preds)
+    probas = np.random.multinomial(1, preds, 1)
+    return np.argmax(probas)
+
+def pred_next_ingr(ingr_list):
+
+    pred_next = []
+
+    for diversity in [0.2, 0.6, 1.2]:
+
+        start_ingr = [ingr_int[x] for x in ingr_list]
+
+        for i in range(10):
+            x_pred = np.zeros((1, max_pred_length, len(ingr_int)))
+            for t, ingr in enumerate(start_ingr):
+                x_pred[0, t, ingr] = 1
+
+            preds = my_model.predict(x_pred, verbose=0)[0]
+            next_index = sample(preds, diversity)
+            next_ingredient = int_ingr[str(next_index)]
+
+            pred_next.append(next_ingredient)
+
+    return list(set(pred_next))
+
+@application.route('/', methods=['GET'])
+def return_conf():
+    return 'aight, now what?'
+
+@application.route('/pred', methods=['GET'])
+def return_sample():
+
+    sample_json = {
+        "1":"butter",
+        "2":"chocolate",
+        "3":"sugar"
+    }
+
+    ingr_list = list(sample_json.values())
+    next_preds = pred_next_ingr(ingr_list)
+
+    next_preds = (set(next_preds) - set(ingr_list))
+
+    return jsonify(list(next_preds))
 
 
-# setting up for local testing, wnat to be able to log the database
-"""
-We want to be able to test locally and log information for debugging
-"""
+@application.route('/pred', methods=['POST'])
+def return_prediction():
 
-# Local sqlite3 database
-local_db_name = 'test.sqlite3'
+    ingr_inputs = request.get_json(force=True)
+    ingr_inputs.update((x, y) for x, y in ingr_inputs.items())
 
+    ingr_list = list(ingr_inputs.values())
+    next_preds = pred_next_ingr(ingr_list)
 
-def create_app(test_config=None):
-    """
-    Creates app
-    """
-    app = Flask()
-    app.config.from_mapping(
-        # Make sure to change debug to False in production env
-        DEBUG=config('DEBUG', default=False),
-        SECRET_KEY=config('SECRET_KEY', default='dev'),  # CHANGE THIS!!!!
-        # For in-memory db: default='sqlite:///:memory:'),
-        DATABASE_URI=config('DATABASE_URI', 'sqlite:///' + \
-                            os.path.join(os.getcwd(), local_db_name)),
-        LOGFILE=config('LOGFILE', os.path.join(
-            app.instance_path, 'logs/debug.log')),
-        CACHE_TYPE=config('CACHE_TYPE', 'simple'),  # Configure caching
-        # Long cache times probably ok for ML api
-        CACHE_DEFAULT_TIMEOUT=config('CACHE_DEFAULT_TIMEOUT', 300),
-        TESTING=config('TESTING', default='TRUE')
-    )
+    next_preds = (set(next_preds) - set(ingr_list))
 
-    # Enable CORS header support
-    CORS(app)
+    return jsonify(list(next_preds))
 
-    # Enable caching
-    cache = Cache(app)
-
-    # Blueprints: Connecting all the routes(Endpoints) we create.
-
-    app.register_blueprints(vision_routes)
-
-    return app
+if __name__ == '__main__':
+    application.run(debug=True, port=8000)

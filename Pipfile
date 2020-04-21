@@ -30,6 +30,8 @@ flask-caching = "*"
 python-decouple = "*"
 sqlalchemy = "*"
 numpy = "*"
+tensorflow-estimator = "==2.1.0"
+tensorflow = "==2.1.0"
 
 [requires]
 python_version = "3.7"
