@@ -4,10 +4,6 @@ import json
 from flask import Flask, jsonify, request
 from tensorflow.keras.models import load_model
 
-'''
-ScottLightfoot Baseline Model. We will consider this our baseline instead of
-the Dishify api.
-'''
 
 app = Flask(__name__)
 
