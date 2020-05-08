@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "carbide-ward-274912",
+  "private_key_id": "577cf7f0eadbcd066344cf5e8ac37dfe9f1ae658",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCc3jbFIzIvzQ9r\nc1Na9qsuWLPq3ntEFbMoyP67khVf2gg6JxH7RUyiRTK/kSEQGGnS861s0LTy/NJQ\nXYhEJ9XCKSsv0yfSn9pNLMQKo5zJdZZ7/ZRjTapwDKuGoW98EjMVweQ4nQP1lN0q\nIK9/Ig3XXFA5FN/9iOGVp3WfMDnIcNRPuOVGxEW6SFSwNl64nlsQh9JpE4tzrCvj\n8PnKiHuwery/Ya3AUGfR4rGbx0jgNOEQELl2mbCzv4HOJDe90AnCoe/kka1XEmV4\nv8nSDdB0tPArR6a40HBPwga6CCqlJoGYuZ2ll21o94++jCIUb1ESpOgJSXeHc/rp\nlMBu6itpAgMBAAECggEAEAvD9vjhcJXNeryGfYLHYluE9eSxn7aHh8e9lNK92Hrt\nRgOKmZUOYHfrF8Dg7KxOoNs3tW6I3+UgH0PeBTi86xo6dm8nPuqGkkfeusbfKhVa\n4g5/kAPZCBKntgML7BlRe+uELI1VIxkJ4X4L7Zl+aHXjJ9+chOrsRlplk/XDJ19I\nKbESZXSYb0F46mZ/bohuU0ocH4/jZ8EdTOAkFe+8/1yPmHihgX0uSWVKwE72/88p\ng5PPRs3QQMvQ7/DNOl5wNBYBre1ccCGCd0G7Jt/t67DQCfwW8b4VHsETwxYj7vVy\nVgWJkA6P6EiktgC6trhZBVuQ0Yglm5F3fzCLuLXjbQKBgQDU9ljiyEeSTrrJKbl9\ngqlKNhrJyRYsqe8D5c2y95/i//wWfy1s29SM3mTedxn6G2Mr/nV4bITu4jwIBOc1\nLY+3PiRgo+bTYBIhp1LNyxp+4v5UuOqnb4+SP3SVu7OW7VT83MKSp9Y+O9BFr3qC\njk0z4GzKXN3nRIt1fQG0CZm95QKBgQC8kdEeNSrSQyT7GtI8QiKDtBj8dKV5Jq/M\nS5C7uP7X3fH8slt0M9cL1n6cj1EtjePEaTmdLoIzVhuWSIcKLOZg1kLa6g5ws3pT\n7E1g0bkyBYviuNfUjRVDMM1Znc4xtLEOrbTv39vIhkWU8GqBigHHcCf5lSCHdeBW\nRowosUi/NQKBgA/ZCUJPHyxfGX1Q0pHpgEmafyHXCgRm3PeQSV9xF//fhtXxvuKj\n9UxKXH1FpbQ8B4RFml5MzROt2EPMgZwueMxtHm3mpI3ET3Ubq4jO/XjF0aFiZWvy\nXF/IwxdFcZbgsHtkvkIFpWbaMqSM63P9vPcIU3A3uvez3SDwHYlVUZCVAoGACOEc\n5b0/LPN4dFKI/8llcqoyWwDrIc9Oi+IrCIvnhCaxVGLZp5khUS9ieuDMw8ZgqUkD\nK4GbI+u0FNmJclM27exo7YID+A6bfgQsiJiXjeFw+tYVY67ZB3bu1H93zCNkCvrn\nADycTs7zy9WeTkc/WjLPzxLUm0xTqfxccTYX5NkCgYBdjGMQFqJhEGH3iaqzB3Xk\nyoTTUe0brJQ95dX5xGAU4OFiHGAI5gTaUJ0yK47KFf2UOVXQysZx3fq/jVQtfQgl\nYCiHwMEQfGuJo6lWjqSGxVRB4mfrwpt2iFaHjlKf2UF1LJUtRgcudufUWhBLDZjP\nV4E5Ak00CbT5WtyuryANpw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "dishify@carbide-ward-274912.iam.gserviceaccount.com",
+  "client_id": "105284170876243655028",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dishify%40carbide-ward-274912.iam.gserviceaccount.com"
+}
