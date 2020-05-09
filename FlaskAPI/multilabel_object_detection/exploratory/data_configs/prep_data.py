@@ -67,11 +67,11 @@ def build_dataset(params):
                                                                                  params['CLASSES_PATH'],
                                                                                  type_list=params.get('LABELS_TYPE_LIST', 'identifiers'))
             # Insert them as outputs
-            ds.setOutput(classes['train'], 'train', type='binary',
+            ds.setOutput(classes['train'], 'train', type='categorical',
                          id=params['OUTPUTS_IDS_DATASET'][0])
-            ds.setOutput(classes['val'], 'val', type='binary',
+            ds.setOutput(classes['val'], 'val', type='categorical',
                          id=params['OUTPUTS_IDS_DATASET'][0])
-            ds.setOutput(classes['test'], 'test', type='binary',
+            ds.setOutput(classes['test'], 'test', type='categorical',
                          id=params['OUTPUTS_IDS_DATASET'][0])
 
             # Insert vocabularies

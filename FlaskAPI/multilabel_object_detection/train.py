@@ -42,7 +42,6 @@ def train_model(params):
     # Load data
     dataset = build_dataset(params)
 
-
     # Build model
     if params['REUSE_MODEL_NAME'] is not None and params['REUSE_MODEL_RELOAD'] > 0:
         ing_model = loadModel(
@@ -66,10 +65,8 @@ def train_model(params):
     ing_model.params = params
     ing_model.setOptimizer()
 
-
     # Callbacks
     callbacks = buildCallbacks(params, ing_model, dataset)
-
 
     # Training
     total_start_time = timer()
@@ -91,7 +88,6 @@ def train_model(params):
         time_difference, time_difference / 60.0))
 
 
-
 def apply_model(params):
     """
         Function for using a previously trained model for predicting.
@@ -100,11 +96,9 @@ def apply_model(params):
     # Load data
     dataset = build_dataset(params)
 
-
     # Load model
     ing_model = loadModel(params['STORE_PATH'], params['RELOAD'])
     ing_model.setOptimizer()
-
 
     # Apply sampling
     callbacks = buildCallbacks(params, ing_model, dataset)
@@ -140,8 +134,6 @@ def apply_model(params):
                 verbose=1,
                 extra_vars=extra_vars,
                 split=s)
-
-
 
 
 def buildCallbacks(params, model, dataset):
@@ -192,7 +184,7 @@ def buildCallbacks(params, model, dataset):
 
 if __name__ == "__main__":
 
-    # to run in the terminal: python -u train.py config_file=config 
+    # to run in the terminal: python -u train.py config_file=config
     cf = 'config'
     for arg in sys.argv[1:]:
         k, v = arg.split('=')
