@@ -32,6 +32,7 @@ logger = logging.getLogger(__name__)
 
 
 def train_model(params):
+<<<<<<< HEAD
     """
         Main function
     """
@@ -134,6 +135,69 @@ def apply_model(params):
                 verbose=1,
                 extra_vars=extra_vars,
                 split=s)
+=======
+    '''
+    Main function for training a model.
+    '''
+    if (params['RELOAD'] > 0):
+        logging.info('Resuming Training.')
+
+        # load the data
+        dataset = build_dataset(params)
+
+        # build model
+        if params['REUSE_MODEL_NAME'] is not None and params['REUSE_MODEL_LOAD'] > 0:
+            ing_model = loadModel(
+                params['REUSE_MODEL_NAME'], params['REUSE_MODEL_LOAD'])
+            ing_model.setName(
+                model_name=params['MODEL_NAME'], store_path=params['STORE_PATH'])
+            ing_model.changeClassifier(params, last_layer=params['LAST_LAYER'])
+            ing_model.updateLogger(force=True)
+
+         # Logic for building a new model.
+        elif (params['RELOAD'] == 0):
+            ing_model = loadModel(params, type=params['MODEL_TYPE'], verbose=params['VERBOSE'],
+                                  model_name=params['MODEL_NAME'], store_path=params['STORE_PATH'])
+
+            # Define the inputs and outputs mapping from our Dataset instance to our model
+            ing_model.setInputsMapping(params['INPUTS_MAPPING'])
+            ing_model.setOutputsMapping(params['OUTPUTS_MAPPING'])
+
+        else:
+            # resume from previously trained model
+            ing_model = loadModel(params['STORE_PATH'], params['RELOAD'])
+
+         # update optimizer
+        ing_model.params = params
+        ing_model.setOptimizer
+
+        # callbacks
+        callbacks = buildCallbacks(params, ing_model, dataset)
+
+        # train
+        total_start_time = timer()
+
+        # log
+        logger.debug('Start training..')
+        # params set in the config.py
+        training_params = {'n_epochs': params['MAX_EPOCH'], 'batch_size': params['BATCH_SIZE'],
+                           'lr_decay': params['LR_DECAY'], 'lr_gamma': params['LR_GAMMA'],
+                           'epochs_for_save': params['EPOCHS_FOR_SAVE'], 'verbose': params['VERBOSE'],
+                           'n_parallel_loaders': params['PARALLEL_LOADERS'],
+                           'extra_callbacks': callbacks, 'reload_epoch': params['RELOAD'], 'epoch_offset': params['RELOAD'],
+                           'data_augmentation': params['DATA_AUGMENTATION'],
+                           'patience': params['PATIENCE'], 'metric_check': params['STOP_METRIC']
+                           }
+
+        ing_model.trainNet(dataset, training_params)
+
+        total_end_time = timer()
+        time_difference = total_end_time - total_start_time
+
+        # log all info
+        logging.info('Total time spent {0:.2f}s = {1:.2f}m'.format(
+            time_difference, time_difference / 60.0))
+>>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
 
 
 def buildCallbacks(params, model, dataset):
@@ -168,7 +232,11 @@ def buildCallbacks(params, model, dataset):
                                           output_types=params['OUTPUTS_TYPES'],
                                           min_pred_multilabel=params.get(
                                               'MIN_PRED_VAL', 0),
+<<<<<<< HEAD
                                           index2word_y=vocab,  #
+=======
+                                          index2word_y=vocab,  # text info
+>>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
                                           save_path=model.model_path,
                                           reload_epoch=params['RELOAD'],
                                           start_eval_on_epoch=params['START_EVAL_ON_EPOCH'],
@@ -184,7 +252,10 @@ def buildCallbacks(params, model, dataset):
 
 if __name__ == "__main__":
 
+<<<<<<< HEAD
     # to run in the terminal: python -u train.py config_file=config
+=======
+>>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
     cf = 'config'
     for arg in sys.argv[1:]:
         k, v = arg.split('=')
@@ -196,8 +267,11 @@ if __name__ == "__main__":
     if(params['MODE'] == 'training'):
         logging.info('Running training.')
         train_model(params)
+<<<<<<< HEAD
     elif(params['MODE'] == 'predict'):
         logging.info('Running predict.')
         apply_model(params)
+=======
+>>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
 
     logging.info('Done!')
