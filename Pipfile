@@ -1,0 +1,31 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+imageio = "*"
+imagesize = "*"
+lxml = "*"
+opencv-python = "*"
+requests = "*"
+numpy = "*"
+pandas = "*"
+scipy = "*"
+tensorboard = "*"
+tensorflow-estimator = "*"
+tensorflow = "*"
+seaborn = "*"
+multimodal-keras-wrapper = "*"
+Flask = "*"
+Flask-SQLAlchemy = "*"
+Sphinx = "*"
+Keras = "*"
+Keras-Applications = "*"
+Keras-Preprocessing = "*"
+hspy = "*"
+
+[requires]
+python_version = "3.7"

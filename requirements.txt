@@ -1,0 +1,23 @@
+-i https://pypi.org/simple
+Flask
+Flask-SQLAlchemy
+
+hSpy
+imageio
+imagesize
+lxml
+opencv-python
+requests
+numpy
+pandas
+scipy
+sphinx
+tensorboard
+tensorflow-estimator
+tensorflow
+seaborn
+
+keras
+keras-applications
+keras-preprocessing
+multimodal-keras-wrapper
