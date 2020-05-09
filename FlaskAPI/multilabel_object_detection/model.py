@@ -8,11 +8,8 @@ from keras.models import model_from_json, Sequential, Model
 from keras.layers.advanced_activations import PReLU
 from keras.layers.normalization import BatchNormalization
 from keras.optimizers import Adam
-<<<<<<< HEAD
 from keras.layers import Flatten
 
-=======
->>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
 
 # Model imports(ResNet50, InceptionV3, VGG16) # NOTE: no current config for VGG16 in the config file.
 from keras.applications.resnet50 import ResNet50
@@ -37,11 +34,7 @@ NOTE: Configurations of the models params are in config.py, to change the params
 
 class Ingredients_Model(Model_Wrapper):
 
-<<<<<<< HEAD
     def __init__(self, params, type='Inception', verbose=1, structure_path=None, weights_path=None,
-=======
-    def __init__(self, params, type='VGG16', verbose=1, structure_path=None, weights_path=None,
->>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
                  model_name=None, store_path=None, seq_to_functional=False):
         """
             Ingredients_Model object constructor.
@@ -55,13 +48,8 @@ class Ingredients_Model(Model_Wrapper):
             :param store_path: path to the folder where the temporal model packups will be stored
             :param seq_to_functional: defines if we are loading a set of weights from a Sequential model to a FunctionalAPI model (only applicable if weights_path is not None)
         """
-<<<<<<< HEAD
         super(self.__class__, self).__init__(model_name=model_name,
                                              silence=verbose, inheritance=True)
-=======
-        super(self.__class__, self).__init__(type=type, model_name=model_name,
-                                             silence=verbose == 1, models_path=store_path, inheritance=True)
->>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
 
         self.__toprint = ['_model_type', 'name', 'model_path', 'verbose']
 
@@ -100,20 +88,12 @@ class Ingredients_Model(Model_Wrapper):
 
         # Print information of self
         if verbose > 0:
-<<<<<<< HEAD
             #    print str(self)
-=======
-            #    print str(self)  # NEEDS TO BE DEBUGGED
->>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
             self.model.summary()
 
-        self.setOptimizer()
+     #   self.setOptimizer()
 
-<<<<<<< HEAD
-    def setOptimizer(self, metrics=['acc'], momentum=None):
-=======
-    def setOptimizer(self, metrics=['acc']):
->>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
+    def setOptimizer(self, lr=0.001, momentum=None, loss='categorical_crossentropy'):
         """
             Sets a new optimizer for the model.
         """
@@ -168,12 +148,7 @@ class Ingredients_Model(Model_Wrapper):
             labels_pred[i] == 1)[0]] for i in range(labels_pred.shape[0])]
         return labels_pred
 
-<<<<<<< HEAD
     #  VISUALIZATION Methods for visualization
-=======
-    # VISUALIZATION
-    # Methods for visualization
->>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
 
     def __str__(self):
         """
@@ -198,11 +173,7 @@ class Ingredients_Model(Model_Wrapper):
 
         return obj_str
 
-<<<<<<< HEAD
     #   PREDEFINED MODELS
-=======
-    # Predefined models in the config.py files.
->>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
 
     def VGG16(self, params):
 
@@ -212,13 +183,8 @@ class Ingredients_Model(Model_Wrapper):
         activation_type = params['CLASSIFIER_ACTIVATION']
         nOutput = params['NUM_CLASSES']
 
-<<<<<<< HEAD
         # Load VGG16 model pre-trained on ImageNet
 
-=======
-        ##################################################
-        # Load VGG16 model pre-trained on ImageNet
->>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
         self.model = VGG16(weights='imagenet',
                            layers_lr=params['PRE_TRAINED_LR_MULTIPLIER'],
                            input_name=self.ids_inputs[0])
@@ -228,20 +194,15 @@ class Ingredients_Model(Model_Wrapper):
 
         # Recover last layer kept from original model: 'fc2'
         x = self.model.get_layer('fc2').output
-<<<<<<< HEAD
 
         # Create last layer (classification)
 
-=======
-        ##################################################
-
-        # Create last layer (classification)
->>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
         x = Dense(nOutput, activation=activation_type, name=self.ids_outputs[0],
                   W_learning_rate_multiplier=params['NEW_LAST_LR_MULTIPLIER'],
                   b_learning_rate_multiplier=params['NEW_LAST_LR_MULTIPLIER'])(x)
 
         self.model = Model(input=image, output=x)
+        self.model.compile(optimizer='adam', loss='categorical_crossentropy')
 
     def Inception(self, params):
 
@@ -251,7 +212,6 @@ class Ingredients_Model(Model_Wrapper):
         activation_type = params['CLASSIFIER_ACTIVATION']
         nOutput = params['NUM_CLASSES']
 
-<<<<<<< HEAD
         # Load VGG16 model pre-trained on ImageNet
 
         self.model = InceptionV3(
@@ -259,17 +219,11 @@ class Ingredients_Model(Model_Wrapper):
 
         # Freeze the base model
         self.model.trainable = False
-=======
-        ##################################################
-        # Load VGG16 model pre-trained on ImageNet
-        self.model = InceptionV3(weights='imagenet')
->>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
 
         # Recover input layer
         image = self.model.get_layer(self.ids_inputs[0]).output
 
         # Recover last layer kept from original model: 'fc2'
-<<<<<<< HEAD
         #x = self.model.get_layer(params['LAST_LAYER']).output
         x = Flatten()(image)
 
@@ -277,19 +231,11 @@ class Ingredients_Model(Model_Wrapper):
         x = Dense(nOutput, activation=activation_type,
                   name=self.ids_outputs[0])(x)
 
-        self.model = Model(input=image, output=x)
+        self.model = Model(inputs=image, outputs=x)
         #self.model = Model(inputs=[image], outputs=x)
-=======
-        x = self.model.get_layer('flatten').output
-        ##################################################
 
-        # Create last layer (classification)
-        x = Dense(nOutput, activation=activation_type, name=self.ids_outputs[0],
-                  W_learning_rate_multiplier=params['NEW_LAST_LR_MULTIPLIER'],
-                  b_learning_rate_multiplier=params['NEW_LAST_LR_MULTIPLIER'])(x)
-
-        self.model = Model(input=image, output=x)
->>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
+        # compile
+        self.model.compile(optimizer='adam', loss='categorical_crossentropy')
 
     def ResNet50(self, params):
 
@@ -299,15 +245,9 @@ class Ingredients_Model(Model_Wrapper):
         activation_type = params['CLASSIFIER_ACTIVATION']
         nOutput = params['NUM_CLASSES']
 
-<<<<<<< HEAD
         ##################################################
         # Load ResNet50 model pre-trained on ImageNet
         self.model = ResNet50(weights='imagenet',
-=======
-        # Load ResNet50 model pre-trained on ImageNet
-        self.model = ResNet50(weights='imagenet',
-                              layers_lr=params['PRE_TRAINED_LR_MULTIPLIER'],
->>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
                               input_shape=tuple(
                                   [params['IMG_SIZE_CROP'][2]] + params['IMG_SIZE_CROP'][:2]),
                               include_top=False, input_name=self.ids_inputs[0])
@@ -327,7 +267,8 @@ class Ingredients_Model(Model_Wrapper):
 
         self.model = Model(input=image, output=x)
 
-<<<<<<< HEAD
+        self.model.compile(optimizer='adam', loss='categorical_crossentropy')
+
     def TestModel(self, params):
 
         self.ids_inputs = params["INPUTS_IDS_MODEL"]
@@ -354,8 +295,8 @@ class Ingredients_Model(Model_Wrapper):
 
         self.model = Model(input=image, output=x)
 
-=======
->>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
+        self.model.compile(optimizer='adam', loss='categorical_crossentropy')
+
     # Auxiliary functions
     def changeClassifier(self, params, last_layer='flatten'):
 
@@ -364,10 +305,7 @@ class Ingredients_Model(Model_Wrapper):
 
         activation_type = params['CLASSIFIER_ACTIVATION']
 
-<<<<<<< HEAD
         ########
-=======
->>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
         inp = self.model.get_layer(self.ids_inputs[0]).output
 
         last = self.model.get_layer(last_layer).output
@@ -377,3 +315,5 @@ class Ingredients_Model(Model_Wrapper):
                     b_learning_rate_multiplier=params['NEW_LAST_LR_MULTIPLIER'])(last)
 
         self.model = Model(input=inp, output=out)
+
+        self.model.compile(optimizer='adam', loss='categorical_crossentropy')
