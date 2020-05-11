@@ -17,7 +17,6 @@ in ['DATA_PATH'] and adjust other configurations accordingly.
 
 
 def build_dataset(params):
-<<<<<<< HEAD
 
     if params['REBUILD_DATASET']:  # new dataset instance
         if(params['VERBOSE'] > 0):
@@ -50,51 +49,6 @@ def build_dataset(params):
 
             # train split
             ds.setOutput(base_path + '/' + params['LABELS_FILES']['train'], 'train',
-=======
-    '''
-    Function for structuring a dataset
-    '''
-    if params['REBUILD_DATASET']:  # new instance of the dataset
-        if (params['VERBOSE'] > 0):
-            silence = False
-            logging.info('Building '+params['DATASET_NAME']+' dataset')
-        else:
-            silence = True
-
-        base_path = params['DATA_PATH']  # path to data
-        ds = Dataset(params['DATASET_NAME'],
-                     base_path+params.get('SUFFIX_DATASET', '/images'),
-                     silence=silence)
-
-        # INPUT DATA / Images
-        # Configs for training dataset
-        ds.setInput(base_path+'/'+params['IMG_FILES']['train'], 'train',
-                    type='raw-image', id=params['INPUTS_IDS_DATASET'][0],
-                    img_size=params['IMG_SIZE'],
-                    img_size_crop=params['IMG_SIZE_CROP'])
-
-        # Configs for val dataset
-        ds.setInput(base_path+'/'+params['IMG_FILES']['val'], 'val',
-                    type='raw-image', id=params['INPUTS_IDS_DATASET'][0],
-                    img_size=params['IMG_SIZE'],
-                    img_size_crop=params['IMG_SIZE_CROP'])
-
-        # Configs for test dataset
-        df.setInput(base_path+'/'+params['IMG_FILES']['test'], 'test',
-                    type='raw-image', id=params['INPUTS_IDS_MODEL'][0],
-                    img_size=params['IMG_SIZE'],
-                    img_size_crop=params['IMG_SIZE_CROP'])
-
-        # Set train mean # check configs for clarification
-        ds.setTrainMean(mean_image=params['MEAN_IMAGE'],
-                        id=params['INPUTS_IDS_DATASET'][0])
-
-        # Output data
-        if params['CLASSIFICATION_TYPE'] == 'single-label':
-
-            # train split
-            ds.setOutput(base_path+'/'+params['LABEL_FILES']['train'], 'train',
->>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
                          type='categorical', id=params['OUTPUTS_IDS_DATASET'][0])
             # val split
             ds.setOutput(base_path + '/' + params['LABELS_FILES']['val'], 'val',
@@ -112,22 +66,12 @@ def build_dataset(params):
                                                                                  params['LABELS_FILES'],
                                                                                  params['CLASSES_PATH'],
                                                                                  type_list=params.get('LABELS_TYPE_LIST', 'identifiers'))
-<<<<<<< HEAD
             # Insert them as outputs
             ds.setOutput(classes['train'], 'train', type='categorical',
                          id=params['OUTPUTS_IDS_DATASET'][0])
             ds.setOutput(classes['val'], 'val', type='categorical',
                          id=params['OUTPUTS_IDS_DATASET'][0])
             ds.setOutput(classes['test'], 'test', type='categorical',
-=======
-
-            # Insert them as outputs
-            ds.setOutput(classes['train'], 'train', type='binary',
-                         id=params['OUTPUTS_IDS_DATASET'][0])
-            ds.setOutput(classes['val'], 'val', type='binary',
-                         id=params['OUTPUTS_IDS_DATASET'][0])
-            ds.setOutput(classes['test'], 'test', type='binary',
->>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
                          id=params['OUTPUTS_IDS_DATASET'][0])
 
             # Insert vocabularies
@@ -146,11 +90,7 @@ def build_dataset(params):
                 ds.setOutput(base_path + '/' + params['LABELS_FILES_FOOD']['test'], 'test',
                              type='categorical', id=params['OUTPUTS_IDS_DATASET'][1])
 
-<<<<<<< HEAD
         # Dataset is downloaded, can be used again by storing in the defined path.
-=======
-        # We have finished loading the dataset, now we can store it for using it in the future
->>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
         saveDataset(ds, params['STORE_PATH'])
 
     else:
@@ -192,11 +132,7 @@ def convertIngredientsList2BinaryClasses(base_path, data, multilabels, type_list
 
     # Preprocess each data split
     classes = dict()
-<<<<<<< HEAD
     for set_name, file in data.items():
-=======
-    for set_name, file in data.iteritems():
->>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
         classes[set_name] = []
         with open(base_path+'/'+file) as f:
             for idx_img, line in enumerate(f):

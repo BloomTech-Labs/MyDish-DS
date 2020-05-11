@@ -1,11 +1,8 @@
 -i https://pypi.org/simple
-Flask
-Flask-SQLAlchemy
 
-<<<<<<< HEAD
+fastapi
+
 hSpy
-=======
->>>>>>> bc62d6b059748b310148f7d7d7c431fb8ac19765
 imageio
 imagesize
 lxml
@@ -24,3 +21,6 @@ keras
 keras-applications
 keras-preprocessing
 multimodal-keras-wrapper
+
+recipe_scrapers
+re
