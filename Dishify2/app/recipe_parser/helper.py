@@ -4,6 +4,7 @@ import io
 import os
 from google.cloud import vision
 from google.cloud.vision import types
+import json
 
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "Key.json"
@@ -31,8 +32,8 @@ def improve_fractions(recipe):
 def is_number(n):
 
     """
-    function to check if  the first character of a string is a number. This function only checks 
-    the first character to cover cases like "3-4" or "3/4". 
+    function to check if  the first character of a string is a number. This 
+    function only checks the first character to cover cases like "3-4" or "3/4". 
     """
     if len(n) == 0:
         return False
@@ -48,9 +49,10 @@ def is_number(n):
 def text_to_number(recipe):
 
     """
-    function to transform written numbers in a string ("one hundred horses") to their integer form
-    ("100 horses"). Works for English, Spanish and French. It takes advantage of the fact that the 
-    Google Vision API recognises the language of the text in the picture that was taken.
+    function to transform written numbers in a string ("one hundred horses") to 
+    their integer form ("100 horses"). Works for English, Spanish and French. 
+    It takes advantage of the fact that the Google Vision API recognises 
+    the language of the text in the picture that was taken.
     """    
     if texts[0].locale == "en":
         
@@ -71,25 +73,12 @@ def text_to_number(recipe):
         return recipe
 
 
-# def decode_string_and_save_image(image_string):
-
-    """
-    function to take in a base64 encoded string that used to be a picture, decode it and save 
-    it for a call to the google vision api. After that the picture needs to be deleted again. 
-    """
-    #image = base64.b64decode(img_str)
-    #filename = 'decoded.jpg' 
-    #with io.open(filename, 'wb') as f:
-        #f.write(image)
-
 
 def decode_string_and_api_call(image_string):
 
-    image = base64.b64decode(imageg_string)
-
     """
-    function to make a call to the google vision api to process the picture that was saved when
-    decode_string_and_save_image was called.
+    function to decode the base64 decoded string and make a google vision api 
+    call with the picture.
     """
     # decode image_string
     decoded_string = base64.b64decode(image_string)
@@ -104,6 +93,9 @@ def decode_string_and_api_call(image_string):
     blocks = response.full_text_annotation
 
     return texts, blocks
+
+
+
 
 
 
