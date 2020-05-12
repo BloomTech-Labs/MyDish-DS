@@ -36,7 +36,10 @@ text2num = "==2.2.0"
 urllib3 = "==1.25.9"
 uvicorn = "==0.11.5"
 websockets = "==8.1"
+Flask = "*"
 PyYAML = "==5.3.1"
+psycopg2-binary = "*"
+recipe-scrapers = "*"
 
 [requires]
 python_version = "3.7"
