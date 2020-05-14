@@ -1,5 +1,6 @@
 import re 
 from recipe_parser.helper import text_to_number, improve_fractions
+import json
 
 
 
@@ -21,10 +22,10 @@ def parse_ingredients(recipe):
     # remove all special characters
     recipe = re.sub('[^A-Za-z0-9 ,;.:-?!""\n]+', '', recipe)
     
-    # apply the text2num library if the recipe is in french, spanish or english. 
+    # apply the text2num library if the recipe is in French, Spanish or English. 
     # This will transform written numbers (like "one hundred") to 
-    # integers in string format (like "100"). If the time permits a german version of 
-    # this library will be implemented.
+    # integers in string format (like "100"). If the time permits a german 
+    # version of this library will be implemented.
     recipe = text_to_number(recipe)
     
     # transform the string into an iterable format, line for line, word for word.
@@ -113,5 +114,6 @@ def parse_ingredients(recipe):
         else:
             continue
             
-        return {"ingredients": ingredients}
+        ingredients_dict = {"ingredients": ingredients}
+        return json.dumps(ingredients_dict)
             

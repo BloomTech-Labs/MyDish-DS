@@ -1,4 +1,5 @@
 from recipe_parser.helper import text_to_number
+import json
 
 def parse_instructions(recipe):
     
@@ -21,7 +22,8 @@ def parse_instructions(recipe):
     
         # recipe = recipe.splitlines()
 
-        return {"instructions": [texts[0].description]}
+        instructions_dict = {"instructions": [texts[0].description]}
+        return json.dumps(instructions_dict)
         
         
 
@@ -44,7 +46,8 @@ def parse_instructions(recipe):
                     
         blocks_splitted = all_blocks.split("new block")[1:]
         
-        return {"instructions": blocks_splitted}
+        instructions_dict =  {"instructions": blocks_splitted}
+        return json.dumps(instructions_dict)
     
     
             
