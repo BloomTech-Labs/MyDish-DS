@@ -1,32 +1,22 @@
-from recipe_parser.helper import text_to_number
+from recipe_parser.helper import clean_recipe, find_order
 import json
 
 def parse_instructions(recipe):
-    
-    # base dictionary
-    
-    
+
+    """
+
+
+    """
     
     if len(blocks.pages[0].blocks) < 2:
 
-        
-        
-        # parse string to check if there is a detectable structure in the string - 
-        # 1. followed by 2. followed by 3. etc. to indicate steps.
-        
-        # apply text2num library
-    
-        # recipe = text_to_number(recipe)
-    
-        # transform to iterable format
-    
-        # recipe = recipe.splitlines()
+        recipe = clean_recipe(recipe)
 
-        instructions_dict = {"instructions": [texts[0].description]}
+        instructions_dict = find_order(recipe)
+
         return json.dumps(instructions_dict)
         
         
-
     else:
         
         all_blocks = ""
@@ -47,6 +37,7 @@ def parse_instructions(recipe):
         blocks_splitted = all_blocks.split("new block")[1:]
         
         instructions_dict =  {"instructions": blocks_splitted}
+        
         return json.dumps(instructions_dict)
     
     
