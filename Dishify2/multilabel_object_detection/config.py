@@ -155,11 +155,15 @@ def load_params():
 
     # Evaluation params
     # Possible values: 'train', 'val' and 'test'
-    EVAL_ON_SETS = ['val', 'test']
-    START_EVAL_ON_EPOCH = 0  # First epoch where the model will be evaluated
+    EVAL_ON_SETS = ['train', 'val']
+    START_EVAL_ON_EPOCH = 5  # First epoch where the model will be evaluated
 
     # Optimizer parameters (see model.compile() function)
     OPTIMIZER = 'adam'
+
+    # momentum
+    MOMENTUM = 1
+
     # number of minimum number of epochs before the next LR decay (set to None to disable)
     LR_DECAY = 1
     LR_GAMMA = 0.9  # multiplier used for decreasing the LR
@@ -170,9 +174,9 @@ def load_params():
     NEW_LAST_LR_MULTIPLIER = 1.0
 
     # Training parameters
-    MAX_EPOCH = 200  # Stop when computed this number of epochs
-    PATIENCE = 20    # number of epoch we will wait to possibly obtain a higher accuracy
-    BATCH_SIZE = 10
+    MAX_EPOCH = 20  # Stop when computed this number of epochs
+    PATIENCE = 5  # number of epoch we will wait to possibly obtain a higher accuracy
+    BATCH_SIZE = 5
     PARALLEL_LOADERS = 8  # parallel data batch loaders
     EPOCHS_FOR_SAVE = 1  # number of epochs between model saves
     WRITE_VALID_SAMPLES = True  # Write valid samples in file
@@ -186,7 +190,7 @@ def load_params():
 
     REUSE_MODEL_NAME = None  # 'trained_models/Inception_inception_recipes_v2' # None default
     LAST_LAYER = 'flatten'  # 'flatten' #(InceptionV3)
-    REUSE_MODEL_RELOAD = 68
+    REUSE_MODEL_RELOAD = 1
 
     VERBOSE = 1  # Verbosity
     # build again (True) or use stored instance (False)

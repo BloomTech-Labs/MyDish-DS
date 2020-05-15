@@ -1,14 +1,19 @@
 # keras Imports
+import keras
 from keras.engine import Input
 from keras.layers.core import Dropout, RepeatVector, Dense, Flatten, Activation, Lambda
 from keras.layers.embeddings import Embedding
-from keras.layers import Convolution2D, MaxPooling2D, ZeroPadding2D, AveragePooling2D, GlobalMaxPooling2D
+from keras.layers import Convolution2D, MaxPooling2D, ZeroPadding2D, AveragePooling2D, GlobalMaxPooling2D, Cropping2D
+from keras.layers import Concatenate as Concat
 from keras.layers.recurrent import LSTM
 from keras.models import model_from_json, Sequential, Model
 from keras.layers.advanced_activations import PReLU
 from keras.layers.normalization import BatchNormalization
+from keras.preprocessing.image import ImageDataGenerator
 from keras.optimizers import Adam
-from keras.layers import Flatten
+from keras.layers import Flatten, Permute
+from keras.layers import Convolution2D as Conv2D
+from keras.layers.convolutional import UpSampling2D
 
 
 # Model imports(ResNet50, InceptionV3, VGG16) # NOTE: no current config for VGG16 in the config file.
@@ -16,6 +21,8 @@ from keras.applications.resnet50 import ResNet50
 from keras.applications.vgg16 import VGG16
 from keras.applications.inception_v3 import InceptionV3
 
+import tensorflow as tf
+import keras
 # custom keras import
 from keras_wrapper.cnn_model import Model_Wrapper
 
@@ -88,12 +95,12 @@ class Ingredients_Model(Model_Wrapper):
 
         # Print information of self
         if verbose > 0:
-            #    print str(self)
+            print(self.verbose)
             self.model.summary()
 
      #   self.setOptimizer()
 
-    def setOptimizer(self, lr=0.001, momentum=None, loss='categorical_crossentropy'):
+    def setOptimizer(self, lr=0.001, loss='categorical_crossentropy', optimizer='adam'):
         """
             Sets a new optimizer for the model.
         """
@@ -101,6 +108,7 @@ class Ingredients_Model(Model_Wrapper):
         super(self.__class__, self).setOptimizer(lr=self.params['LR'],
                                                  loss=self.params['LOSS'],
                                                  optimizer=self.params['OPTIMIZER'],
+                                                 momentum=self.params['MOMENTUM'],
                                                  loss_weights=self.params.get(
                                                      'LOSS_WIGHTS', None),
                                                  sample_weight_mode='temporal' if self.params.get('SAMPLE_WEIGHTS', False) else None)
@@ -212,30 +220,101 @@ class Ingredients_Model(Model_Wrapper):
         activation_type = params['CLASSIFIER_ACTIVATION']
         nOutput = params['NUM_CLASSES']
 
-        # Load VGG16 model pre-trained on ImageNet
+        # Load Inception model pre-trained on ImageNet
 
-        self.model = InceptionV3(
-            weights='imagenet', include_top=False, input_shape=params['IMG_SIZE'])
+        self.model = InceptionV3(weights='imagenet')
 
         # Freeze the base model
-        self.model.trainable = False
+    #    self.model.trainable = False
 
         # Recover input layer
         image = self.model.get_layer(self.ids_inputs[0]).output
 
-        # Recover last layer kept from original model: 'fc2'
-        #x = self.model.get_layer(params['LAST_LAYER']).output
-        x = Flatten()(image)
+        # Convolution2D layers
+        conv1 = Conv2D(64, (3, 3), activation='relu',
+                       padding='same', name='conv1_1')(image)
+
+        conv1 = Conv2D(64, (3, 3), activation='relu', padding='same')(conv1)
+        conv1 = Conv2D(64, (3, 3), activation='relu', padding='same')(conv1)
+        pool1 = MaxPooling2D(pool_size=(2, 2))(conv1)
+
+        conv2 = Conv2D(128, (3, 3), activation='relu', padding='same')(pool1)
+        conv2 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv2)
+        conv2 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv2)
+        pool2 = MaxPooling2D(pool_size=(2, 2))(conv2)
+
+        conv3 = Conv2D(128, (3, 3), activation='relu', padding='same')(pool2)
+        conv3 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv3)
+        conv3 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv3)
+        pool3 = MaxPooling2D(pool_size=(2, 2))(conv3)
+
+        conv4 = Conv2D(256, (3, 3), activation='relu', padding='same')(pool3)
+        conv4 = Conv2D(256, (3, 3), activation='relu', padding='same')(conv4)
+        conv4 = Conv2D(256, (3, 3), activation='relu', padding='same')(conv4)
+        pool4 = MaxPooling2D(pool_size=(2, 2))(conv4)
+
+        # Middle of the path (bottleneck)
+        conv5 = Conv2D(512, (3, 3), activation='relu', padding='same')(pool4)
+        conv5 = Conv2D(512, (3, 3), activation='relu', padding='same')(conv5)
+        conv5 = Conv2D(512, (3, 3), activation='relu', padding='same')(conv5)
+
+        # Upsampling path
+        up_conv5 = UpSampling2D(size=(2, 2))(conv5)
+        up_conv5 = ZeroPadding2D()(up_conv5)
+   #     up6 = Concat(cropping=[None, None, 'center', 'center'])([conv4, up_conv5])
+        conv6 = Conv2D(256, (3, 3), activation='relu',
+                       padding='same')(up_conv5)
+        conv6 = Conv2D(256, (3, 3), activation='relu', padding='same')(conv6)
+        conv6 = Conv2D(256, (3, 3), activation='relu', padding='same')(conv6)
+
+        up_conv6 = UpSampling2D(size=(2, 2))(conv6)
+        up_conv6 = ZeroPadding2D()(up_conv6)
+   #     up7 = Concat(cropping=[None, None, 'center', 'center'])([conv3, up_conv6])
+        conv7 = Conv2D(128, (3, 3), activation='relu',
+                       padding='same')(up_conv6)
+        conv7 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv7)
+        conv7 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv7)
+
+        up_conv7 = UpSampling2D(size=(2, 2))(conv7)
+        up_conv7 = ZeroPadding2D()(up_conv7)
+  #      up8 = Concat(cropping=[None, None, 'center', 'center'])([conv2, up_conv7])
+        conv8 = Conv2D(128, (3, 3), activation='relu',
+                       padding='same')(up_conv7)
+        conv8 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv8)
+        conv8 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv8)
+
+        up_conv8 = UpSampling2D(size=(2, 2))(conv8)
+        up_conv8 = ZeroPadding2D()(up_conv8)
+   #     up9 = Concat(cropping=[None, None, 'center', 'center'])([conv1, up_conv8])
+        conv9 = Conv2D(64, (3, 3), activation='relu', padding='same')(up_conv8)
+        conv9 = Conv2D(64, (3, 3), activation='relu', padding='same')(conv9)
+        conv9 = Conv2D(64, (3, 3), activation='relu', padding='same')(conv9)
+
+        # Final classification layer (batch_size, classes, width, height)
+        x = Conv2D(params['NUM_CLASSES'], (1, 1), border_mode='same')(conv9)
 
         # Create last layer (classification)
-        x = Dense(nOutput, activation=activation_type,
-                  name=self.ids_outputs[0])(x)
+        x = Dense(nOutput, activation=activation_type)(x)
 
-        self.model = Model(inputs=image, outputs=x)
-        #self.model = Model(inputs=[image], outputs=x)
+        x = Dense(2000, activation='tanh')(x)
+
+        x = Dense(1000, activation='tanh')(x)
+
+        x = Dense(500, activation='tanh')(x)
+
+        # output
+        out = Activation(params['CLASSIFIER_ACTIVATION'],
+                         name=self.ids_outputs[0])(x)
+
+        # instantiate model
+        self.model = Model(inputs=image, outputs=out)
 
         # compile
-        self.model.compile(optimizer='adam', loss='categorical_crossentropy')
+        self.model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=[
+                           'categorical_accuracy'])
+
+        # summary
+        self.model.summary()
 
     def ResNet50(self, params):
 
@@ -245,29 +324,64 @@ class Ingredients_Model(Model_Wrapper):
         activation_type = params['CLASSIFIER_ACTIVATION']
         nOutput = params['NUM_CLASSES']
 
-        ##################################################
         # Load ResNet50 model pre-trained on ImageNet
-        self.model = ResNet50(weights='imagenet',
-                              input_shape=tuple(
-                                  [params['IMG_SIZE_CROP'][2]] + params['IMG_SIZE_CROP'][:2]),
-                              include_top=False, input_name=self.ids_inputs[0])
+        self.model = ResNet50(weights='imagenet')
 
         # Recover input layer
         image = self.model.get_layer(self.ids_inputs[0]).output
 
-        # Recover last layer kept from original model: 'avg_pool'
-        x = self.model.get_layer('avg_pool').output
-        ##################################################
+        # Convolution2D layers
+        conv1 = Conv2D(64, (3, 3), activation='relu',
+                       padding='same', name='conv1_1')(image)
+
+        conv1 = Conv2D(64, (3, 3), activation='relu', padding='same')(conv1)
+        conv1 = Conv2D(64, (3, 3), activation='relu', padding='same')(conv1)
+        pool1 = MaxPooling2D(pool_size=(2, 2))(conv1)
+
+        conv2 = Conv2D(128, (3, 3), activation='relu', padding='same')(pool1)
+        conv2 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv2)
+        conv2 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv2)
+        pool2 = MaxPooling2D(pool_size=(2, 2))(conv2)
+
+        conv3 = Conv2D(128, (3, 3), activation='relu', padding='same')(pool2)
+        conv3 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv3)
+        conv3 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv3)
+        pool3 = MaxPooling2D(pool_size=(2, 2))(conv3)
+
+        conv4 = Conv2D(256, (3, 3), activation='relu', padding='same')(pool3)
+        conv4 = Conv2D(256, (3, 3), activation='relu', padding='same')(conv4)
+        conv4 = Conv2D(256, (3, 3), activation='relu', padding='same')(conv4)
+        pool4 = MaxPooling2D(pool_size=(2, 2))(conv4)
+
+        # Middle of the path (bottleneck)
+        conv5 = Conv2D(512, (3, 3), activation='relu', padding='same')(pool4)
+        conv5 = Conv2D(512, (3, 3), activation='relu', padding='same')(conv5)
+        conv5 = Conv2D(512, (3, 3), activation='relu', padding='same')(conv5)
+
+        # Final classification layer (batch_size, classes, width, height)
+        x = Conv2D(params['NUM_CLASSES'], (1, 1), border_mode='same')(conv5)
 
         # Create last layer (classification)
-        x = Flatten()(x)
-        x = Dense(nOutput, activation=activation_type, name=self.ids_outputs[0],
-                  W_learning_rate_multiplier=params['NEW_LAST_LR_MULTIPLIER'],
-                  b_learning_rate_multiplier=params['NEW_LAST_LR_MULTIPLIER'])(x)
+        x = Dense(500, activation='tanh')(x)
 
-        self.model = Model(input=image, output=x)
+        x = Dense(1000, activation='tanh')(x)
 
-        self.model.compile(optimizer='adam', loss='categorical_crossentropy')
+        x = Dense(2000, activation='tanh')(x)
+
+        x = Dense(nOutput, activation=activation_type)(x)
+
+        # output
+        out = Activation(params['CLASSIFIER_ACTIVATION'],
+                         name=self.ids_outputs[0])(x)
+
+        # instantiate model
+        self.model = Model(inputs=image, outputs=out)
+
+        # compile
+     #   self.model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['categorical_accuracy'])
+
+        # summary
+        self.model.summary()
 
     def TestModel(self, params):
 

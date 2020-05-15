@@ -63,7 +63,7 @@ def train_model(params):
         ing_model = loadModel(params['STORE_PATH'], params['RELOAD'])
     # Update optimizer either if we are loading or building a model
     ing_model.params = params
-   # ing_model.setOptimizer()
+    ing_model.setOptimizer()
 
     # Callbacks
     callbacks = buildCallbacks(params, ing_model, dataset)
@@ -80,7 +80,7 @@ def train_model(params):
                        'data_augmentation': params['DATA_AUGMENTATION'],
                        'patience': params['PATIENCE'], 'metric_check': params['STOP_METRIC']
                        }
-    ing_model.trainNet(dataset, training_params)
+    ing_model.trainNet(dataset, training_params, callbacks)
 
     total_end_time = timer()
     time_difference = total_end_time - total_start_time

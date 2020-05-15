@@ -66,6 +66,7 @@ def build_dataset(params):
                                                                                  params['LABELS_FILES'],
                                                                                  params['CLASSES_PATH'],
                                                                                  type_list=params.get('LABELS_TYPE_LIST', 'identifiers'))
+
             # Insert them as outputs
             ds.setOutput(classes['train'], 'train', type='categorical',
                          id=params['OUTPUTS_IDS_DATASET'][0])
