@@ -9,7 +9,7 @@ def string_to_list(x):
 
 def ingredient_getter(word):
     if len(word) == 0:
-        return {'error': 'nothing entered'}
+        return json.dumps({'error': 'nothing entered'})
     else:
         results_list = []
         split_words = word.split()
@@ -79,6 +79,6 @@ def ingredient_getter(word):
             results_list.append(ingred_dict)
 
 
-        results_json = json.dumps(results_list)
+        results_json = json.dumps({"recommendations": results_list})
         
         return results_json
