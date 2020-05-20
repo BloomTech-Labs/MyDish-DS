@@ -6,6 +6,8 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+fastapi = "*"
+hspy = "*"
 imageio = "*"
 imagesize = "*"
 lxml = "*"
@@ -19,13 +21,14 @@ tensorflow-estimator = "*"
 tensorflow = "*"
 seaborn = "*"
 multimodal-keras-wrapper = "*"
-Flask = "*"
-Flask-SQLAlchemy = "*"
+recipe-scrapers = "*"
 Sphinx = "*"
 Keras = "*"
 Keras-Applications = "*"
 Keras-Preprocessing = "*"
-hspy = "*"
+nltk = "*"
+opencv-contrib-python = "*"
+uvicorn = "*"
 
 [requires]
 python_version = "3.7"

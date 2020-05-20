@@ -17,10 +17,10 @@ tensorflow-estimator
 tensorflow
 seaborn
 
+multimodal-keras-wrapper
 keras
 keras-applications
 keras-preprocessing
-multimodal-keras-wrapper
 
 recipe_scrapers
-re
+nltk

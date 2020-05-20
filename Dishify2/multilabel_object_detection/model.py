@@ -378,7 +378,8 @@ class Ingredients_Model(Model_Wrapper):
         self.model = Model(inputs=image, outputs=out)
 
         # compile
-     #   self.model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['categorical_accuracy'])
+        self.model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=[
+                           'categorical_accuracy'])
 
         # summary
         self.model.summary()
