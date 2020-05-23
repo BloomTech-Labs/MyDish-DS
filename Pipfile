@@ -29,6 +29,9 @@ Keras-Preprocessing = "*"
 nltk = "*"
 opencv-contrib-python = "*"
 uvicorn = "*"
+text2num = "*"
+google-cloud-vision = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.7"
