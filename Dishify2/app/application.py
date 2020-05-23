@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, File, UploadFile
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from recipe_parser.helper import decode_string_and_api_call
@@ -31,9 +31,8 @@ application = app = FastAPI()
 async def create_item(item: ImageJson):
 
     """
-    ???????????
-    takes in a Json, decodes the string in it to a picture, makes a vision api call
-    and parses the returned text
+    accepts a JPEG,  makes a vision api call,
+    parses the returned text, and returns a json
     """
     item = jsonable_encoder(item)
     image_string = item["image"]
@@ -41,13 +40,19 @@ async def create_item(item: ImageJson):
     ingredients = parse_ingredients(texts[0].description)
     return ingredients
 
+    if len(texts) == 0:
+        return json.dumps({"error": "The image does not contain text"})
+    else:
+        ingredients_dict_json = parse_ingredients(texts)
+        return ingredients_dict_json
+
 
 @app.post("/recipe_parser/instructions/")
 async def create_item(item: ImageJson):
 
     """
-    takes in a Json, decodes the string in it to a picture, makes a vision api call
-    and parses the returned text
+    accepts a JPEG,  makes a vision api call,
+    parses the returned text, and returns a json
     """
     item = jsonable_encoder(item)
     image_string = item["image"]
@@ -58,10 +63,12 @@ async def create_item(item: ImageJson):
 
 @app.post("/ingredients/getter")
 async def feature(item: StringJson):
+
     """
     Queries data base from a given name of a recipe, returns ingredients of recipes
     with matching title where the ingredients occur in more than 25 % of recipes.
     """
+
     item = jsonable_encoder(item)
     word_string = item['word']
     results_json = ingredient_getter(word_string)
