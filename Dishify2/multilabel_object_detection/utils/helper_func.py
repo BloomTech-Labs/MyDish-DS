@@ -44,6 +44,9 @@ def print_organizer(printer_split):
 def txt_to_csv(directory, output):
     '''
     Converts txt files to csv
+
+    directory: Directory containing all your txt files.
+    output: Conversion to csv output is stored in the defined path you give it.
     '''
 
     txt_files = os.path.join(directory, '*.txt')
@@ -54,10 +57,26 @@ def txt_to_csv(directory, output):
             filename = os.path.splitext(os.path.basename(txt_file))[0] + '.csv'
 
             with open(os.path.join(output, filename), 'wb') as output_file:
-                writer = out_csv = csv.writer(output_file)
-                rows = out_csv.writerows(in_txt)
+                out_csv = csv.writer(output_file)
+                writer = out_csv.writerows(in_txt)
 
-            return writer, rows
+            return writer
+
+
+def txt_to_csv2(txtfile, csvfile):
+    '''
+    Another function that converts txt files to csv.
+
+    txtfile: can be directory or a singular text file
+    csvfile: Conversion to csv output is stored in the defined path you give it.
+    '''
+    with open(txtfile, 'r') as infile, open(csvfile, 'w') as outfile:
+        stripped = (line.strip() for line in infile)
+        lines = (line.split(",") for line in stripped if line)
+        out_csv = csv.writer(outfile)
+        writer = writer.writerows(lines)
+
+        return writer
 
 
 def plot_folder_img(folder, file):
@@ -364,4 +383,4 @@ def pkl2dict(path):
             return pk.load(f)
         else:
             return pk.load(f,
-                           encoding='en')
+                           encoding='utf-8')
