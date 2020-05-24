@@ -2,6 +2,14 @@ import io
 import os
 import glob
 import csv
+import logging
+import sys
+import tables
+import json
+from __future__ import print_function
+from six import iteritems
+import codecs
+import pickle as pk
 
 import math
 import numpy as np
@@ -18,6 +26,10 @@ from matplotlib.image import imread
 '''
 An assortment of helpful functions
 '''
+
+logging.basicConfig(level=logging.INFO,
+                    format='[%(asctime)s] %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
+logger = logging.getLogger(__name__)
 
 
 def print_organizer(printer_split):
@@ -52,8 +64,8 @@ def plot_folder_img(folder, file):
     '''
     Plot the images stored in your path
 
-    folder = Path to folder containing the images
-    file = name of of the image
+    folder: Path to folder containing the images
+    file: name of of the image
 
     Note: You can plot multiple imgs.
     '''
@@ -78,14 +90,14 @@ def tensor_summary(tensor):
         tensor.shape, tensor.min(), tensor.max()))
 
 
-def normalize(image):
+def tensor_normalize(image):
     """Takes a tensor of 3 dimensions (height, width, colors) and normalizes it's values
     to be between 0 and 1 so it's suitable for displaying as an image."""
     image = image.astype(np.float32)
     return (image - image.min()) / (image.max() - image.min() + 1e-5)
 
 
-def display_images(images, titles=None, cols=5, interpolation=None, cmap="Greys_r"):
+def tensor_display_images(images, titles=None, cols=5, interpolation=None, cmap="Greys_r"):
     """
     images: A list of images. It can be either:
         - A list of Numpy arrays. Each array represents an image.
@@ -110,3 +122,246 @@ def display_images(images, titles=None, cols=5, interpolation=None, cmap="Greys_
         plt.title(title, fontsize=9)
         plt.imshow(image, cmap=cmap, interpolation=interpolation)
         i += 1
+
+
+def create_dir_if_not_exists(directory):
+    """
+    Creates a directory if it doen't exist
+    :param directory: Directory to create
+    :return: None
+    """
+    if not os.path.exists(directory):
+        logger.info("<<< creating directory " + directory + " ... >>>")
+        os.makedirs(directory)
+
+
+def clean_dir(directory):
+    """
+    Creates (or empties) a directory
+    :param directory: Directory to create
+    :return: None
+    """
+
+    if os.path.exists(directory):
+        import shutil
+        logger.warning('<<< Deleting directory: %s >>>' % directory)
+        shutil.rmtree(directory)
+        os.makedirs(directory)
+    else:
+        os.makedirs(directory)
+
+
+# Main functions
+def file2list(filepath,
+              stripfile=True):
+    """
+    Loads a file into a list. One line per element.
+    :param filepath: Path to the file to load.
+    :param stripfile: Whether we should strip the lines of the file or not.
+    :return: List containing the lines read.
+    """
+    with codecs.open(filepath, 'r', encoding='utf-8') as f:
+        lines = [k for k in [k.strip() for k in f.readlines()] if len(k) > 0] if stripfile else [k for k in
+                                                                                                 f.readlines()]
+        return lines
+
+
+def numpy2file(filepath,
+               mylist,
+               permission='wb',
+               split=False):
+    """
+    Saves a numpy array as a file.
+    :param filepath: Destination path.
+    :param mylist: Numpy array to save.
+    :param permission: Write permission.
+    :param split: Whether we save each element from mylist in a separate file or not.
+    :return:
+    """
+    mylist = np.asarray(mylist)
+    if split:
+        for i, filepath_ in list(enumerate(filepath)):
+            with open(filepath_, permission) as f:
+                np.save(f, mylist[i])
+    else:
+        with open(filepath, permission) as f:
+            np.save(f, mylist)
+
+
+def numpy2imgs(folder_path,
+               mylist,
+               imgs_names,
+               dataset):
+    """
+    Save a numpy array as images.
+    :param folder_path: Folder of the images to save.
+    :param mylist: Numpy array containing the images.
+    :param imgs_names: Names of the images to be saved.
+    :param dataset:
+    :return:
+    """
+    from PIL import Image as pilimage
+    create_dir_if_not_exists(folder_path)
+    n_classes = mylist.shape[-1]
+
+    for img, name in zip(mylist, imgs_names):
+        name = '_'.join(name.split('/'))
+        file_path = folder_path + "/" + name  # image file
+
+        out_img = dataset.getImageFromPrediction_3DSemanticLabel(
+            img, n_classes)
+
+        # save the segmented image
+        out_img = pilimage.fromarray(np.uint8(out_img))
+        out_img.save(file_path)
+
+
+def listoflists2file(filepath,
+                     mylist,
+                     permission='w'):
+    """
+    Saves a list of lists into a file. Each element in a line.
+    :param filepath: Destination file.
+    :param mylist: List of lists to save.
+    :param permission: Writing permission.
+    :return:
+    """
+    mylist = [encode_list(sublist) for sublist in mylist]
+    mylist = [item for sublist in mylist for item in sublist]
+    mylist = u'\n'.join(mylist)
+    with codecs.open(filepath, permission, encoding='utf-8') as f:
+        f.write(mylist)
+        f.write('\n')
+
+
+def list2file(filepath,
+              mylist,
+              permission='w'):
+    """
+    Saves a list into a file. Each element in a line.
+    :param filepath: Destination file.
+    :param mylist: List to save.
+    :param permission: Writing permission.
+    :return:
+    """
+    mylist = encode_list(mylist)
+    mylist = u'\n'.join(mylist)
+    with codecs.open(filepath,
+                     permission,
+                     encoding='utf-8') as f:
+        f.write(mylist)
+        f.write('\n')
+
+
+def list2stdout(mylist):
+    """
+    Prints a list in STDOUT
+    :param mylist: List to print.
+    """
+    mylist = encode_list(mylist)
+    mylist = '\n'.join(mylist)
+    print(mylist)
+
+
+def dump_hdf5_simple(filepath,
+                     dataset_name,
+                     data):
+    """
+    Saves a HDF5 file.
+    """
+    import h5py
+    h5f = h5py.File(filepath,
+                    'w')
+    h5f.create_dataset(dataset_name,
+                       data=data)
+    h5f.close()
+
+
+def load_hdf5_simple(filepath,
+                     dataset_name='data'):
+    """
+    Loads a HDF5 file.
+    """
+    import h5py
+    h5f = h5py.File(filepath, 'r')
+    tmp = h5f[dataset_name][:]
+    h5f.close()
+    return tmp
+
+
+def model_to_json(path,
+                  model):
+    """
+    Saves model as a json file under the path.
+    """
+    json_model = model.to_json()
+    with open(path, 'w') as f:
+        json.dump(json_model, f)
+
+
+def json_to_model(path):
+    """
+    Loads a model from the json file.
+    """
+    from keras.models import model_from_json
+    with open(path, 'r') as f:
+        json_model = json.load(f)
+    model = model_from_json(json_model)
+    return model
+
+
+def dict2file(mydict,
+              path,
+              title=None,
+              separator=':',
+              permission='a'):
+    """
+    In:
+        mydict - dictionary to save in a file
+        path - path where mydict is stored
+        title - the first sentence in the file;
+            useful if we write many dictionaries
+            into the same file
+    """
+    tmp = [encode_list([x[0]])[0] + separator + encode_list([x[1]])[0]
+           for x in list(iteritems(mydict))]
+    if title is not None:
+        output_list = [title]
+        output_list.extend(tmp)
+    else:
+        output_list = tmp
+    list2file(path,
+              output_list,
+              permission=permission)
+
+
+def dict2pkl(mydict,
+             path):
+    """
+    Saves a dictionary object into a pkl file.
+    :param mydict: dictionary to save in a file
+    :param path: path where my_dict is stored
+    :return:
+    """
+    if path[-4:] == '.pkl':
+        extension = ''
+    else:
+        extension = '.pkl'
+    with open(path + extension, 'wb') as f:
+        pk.dump(mydict,
+                f,
+                protocol=-1)
+
+
+def pkl2dict(path):
+    """
+    Loads a dictionary object from a pkl file.
+    :param path: Path to the pkl file to load
+    :return: Dict() containing the loaded pkl
+    """
+    with open(path, 'rb') as f:
+        if sys.version_info.major == 2:
+            return pk.load(f)
+        else:
+            return pk.load(f,
+                           encoding='en')
