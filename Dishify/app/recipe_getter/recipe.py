@@ -10,7 +10,7 @@ import json
 def get_recipe(url):
 
     """
-    function to scrape a recipe with a given url and return the content in 
+    function to scrape a recipe with a given url and return the content in
     a ordered way as a JSON
     """
 
@@ -39,9 +39,3 @@ def get_recipe(url):
 
     except Exception as e:
         return json.dumps({"error":f"{e}"})
-
-
-
-
-
-    
