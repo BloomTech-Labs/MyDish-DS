@@ -4,7 +4,11 @@ from recipe_getter.recipe_helper import parse_ingredients_mod
 import json
 
 
+
+
+
 def get_recipe(url):
+
     """
     function to scrape a recipe with a given url and return the content in
     a ordered way as a JSON
@@ -19,7 +23,7 @@ def get_recipe(url):
         scraper = scrape_me(url)
 
         # append the title of the recipe
-        complete_recipe.append({"title": scraper.title()})
+        complete_recipe.append({"title":scraper.title()})
 
         # parse ingredients
 
@@ -31,7 +35,7 @@ def get_recipe(url):
         instructions_dict = find_order(scraper.instructions())
         complete_recipe.append(instructions_dict)
 
-        return json.dumps({"recipe": complete_recipe})
+        return json.dumps({"recipe":complete_recipe})
 
     except Exception as e:
-        return json.dumps({"error": f"{e}"})
+        return json.dumps({"error":f"{e}"})

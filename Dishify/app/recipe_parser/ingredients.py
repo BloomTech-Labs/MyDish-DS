@@ -8,6 +8,7 @@ def parse_ingredients(texts):
     # list to save dictionaries
     ingredients = []
 
+
     #  improve parsability and transform into an iterabel format:
     #  line by line, word by word
     recipe = texts[0].description
@@ -16,8 +17,7 @@ def parse_ingredients(texts):
 
     recipe = re.sub('[^A-Za-z0-9 ,;.:/-?!""\n]+', '', recipe)
 
-    recipe = [text_to_number(line, texts).split()
-              for line in recipe.splitlines()]
+    recipe = [text_to_number(line, texts).split() for line in recipe.splitlines()]
 
     # parse each line of the recipe for unit, quantity and ingredient
     for line in recipe:
@@ -31,8 +31,7 @@ def parse_ingredients(texts):
             # Web will hopefully implement functionality that enables the user to
             # add this line to the previous ingredient if necessary.
 
-            ingredients.append(
-                {"quantity": None, "unit": None, "ingredient": line[0]})
+            ingredients.append({"quantity":None, "unit":None, "ingredient":line[0]})
             continue
 
         elif length == 2:
@@ -41,14 +40,12 @@ def parse_ingredients(texts):
 
             if (is_number(line[0][0]) and not is_number(line[1][0])):
 
-                ingredients.append(
-                    {"quantity": line[0], "unit": None, "ingredient": line[1]})
+                ingredients.append({"quantity":line[0], "unit":None, "ingredient":line[1]})
                 continue
 
             elif (not is_number(line[0][0]) and is_number(line[1][0])):
 
-                ingredients.append(
-                    {"quantity": line[1], "unit": None, "ingredient": line[0]})
+                ingredients.append({"quantity":line[1], "unit":None, "ingredient":line[0]})
                 continue
 
             else:
@@ -61,8 +58,7 @@ def parse_ingredients(texts):
                 # line and probably part of the ingredient part of that line. Saving
                 # this as one string under ingredient will make it easier for the user
                 # to modify this part.
-                ingredients.append(
-                    {"quantity": None, "unit": None, "ingredient": " ".join(line)})
+                ingredients.append({"quantity":None, "unit":None, "ingredient":" ".join(line)})
                 continue
 
         elif length > 2:
@@ -71,13 +67,13 @@ def parse_ingredients(texts):
 
             instances_number = sum(number_map)
 
-            if instances_number == 0:
+            if instances_number ==  0:
 
                 # in the line there are no words that begin with a number
 
-                ingredients.append(
-                    {"quantity": None, "unit": None, "ingredient": " ".join(line)})
+                ingredients.append({"quantity":None, "unit":None, "ingredient":" ".join(line)})
                 continue
+
 
             elif instances_number == 1:
 
@@ -87,40 +83,34 @@ def parse_ingredients(texts):
 
                 if index == 0:
 
-                    ingredients.append(
-                        {"quantity": line[0], "unit": line[1], "ingredient": " ".join(line[2:])})
+                    ingredients.append({"quantity":line[0], "unit":line[1], "ingredient":" ".join(line[2:])})
                     continue
 
                 elif index == 1:
 
-                    ingredients.append(
-                        {"quantity": line[1], "unit": line[0], "ingredient": " ".join(line[2:])})
+                    ingredients.append({"quantity":line[1], "unit":line[0], "ingredient":" ".join(line[2:])})
                     continue
 
                 elif index == (length - 2):
 
-                    ingredients.append(
-                        {"quantity": line[-2], "unit": line[-1], "ingredient": " ".join(line[:-2])})
+                    ingredients.append({"quantity":line[-2], "unit":line[-1], "ingredient":" ".join(line[:-2])})
                     continue
 
-                elif index == (length - 1):
+                elif index == (length -1):
 
-                    ingredients.append(
-                        {"quantity": line[-1], "unit": line[-2], "ingredient": " ".join(line[:-2])})
+                    ingredients.append({"quantity":line[-1], "unit":line[-2], "ingredient":" ".join(line[:-2])})
                     continue
 
                 else:
 
-                    ingredients.append(
-                        {"quantity": None, "unit": None, "ingredient": " ".join(line)})
+                    ingredients.append({"quantity":None, "unit":None, "ingredient":" ".join(line)})
                     continue
 
             else:
 
                 # in the line there are two or more words that begin with a number
 
-                ingredients.append(
-                    {"quantity": None, "unit": None, "ingredient": " ".join(line)})
+                ingredients.append({"quantity":None, "unit":None, "ingredient":" ".join(line)})
                 continue
 
     ingredients_dict = {"ingredients": ingredients}

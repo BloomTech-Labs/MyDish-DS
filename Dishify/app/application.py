@@ -14,6 +14,7 @@ class StringJson(BaseModel):
     word: str
 
 
+
 application = app = FastAPI()
 
 
@@ -31,10 +32,11 @@ async def feature(item: StringJson):
     texts, blocks = google_api_call(image_string)
 
     if len(texts) == 0:
-        return json.dumps({"error": "The image does not contain text"})
+        return json.dumps({"error":"The image does not contain text"})
     else:
         ingredients_dict_json = parse_ingredients(texts)
         return ingredients_dict_json
+
 
 
 @app.post("/recipe_parser/instructions")
@@ -50,7 +52,7 @@ async def feature(item: StringJson):
     texts, blocks = google_api_call(image_string)
 
     if len(texts) == 0:
-        return json.dumps({"error": "The image does not contain text"})
+        return json.dumps({"error":"The image does not contain text"})
     else:
         instructions_dict_json = parse_instructions(texts, blocks)
         return instructions_dict_json
@@ -60,14 +62,16 @@ async def feature(item: StringJson):
 async def feature(item: StringJson):
 
     """
-    Queries data base from a given name of a recipe, returns ingredients of recipes
-    with matching title where the ingredients occur in more than 25 % of recipes.
+    #Queries data base from a given name of a recipe, returns ingredients of recipes
+    #with matching title where the ingredients occur in more than 25 % of recipes.
     """
 
     item = jsonable_encoder(item)
     word_string = item['word']
     results_json = ingredient_getter(word_string)
     return results_json
+
+
 
 
 @app.post("/recipe/getter")
