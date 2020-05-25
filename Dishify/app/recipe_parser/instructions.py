@@ -1,5 +1,6 @@
-from recipe_parser.helper import text_to_number
+from recipe_parser.helper import find_order, text_to_number, improve_fractions
 import json
+import re
 
 
 def parse_instructions(recipe):
@@ -8,14 +9,13 @@ def parse_instructions(recipe):
 
     if len(blocks.pages[0].blocks) < 2:
 
-        # parse string to check if there is a detectable structure in the string -
-        # 1. followed by 2. followed by 3. etc. to indicate steps.
+        recipe = texts[0].description
 
-        # apply text2num library
+        recipe = improve_fractions(recipe)
 
-        # recipe = text_to_number(recipe)
+        recipe = re.sub('[^A-Za-z0-9 ,;.:/-?!""]+', '', recipe)
 
-        # transform to iterable format
+        recipe = text_to_number(recipe, texts)
 
         # recipe = recipe.splitlines()
 

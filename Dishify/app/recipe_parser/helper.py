@@ -5,7 +5,8 @@ import os
 from google.cloud import vision
 from google.cloud.vision import types
 import json
-
+import re
+import base64
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "Key.json"
 
@@ -24,7 +25,7 @@ def improve_fractions(recipe):
     """
     for i in range(len(fractions)):
         recipe = recipe.replace(fractions[i], fractions_better[i])
-        return recipe
+    return recipe
 
 
 def is_number(n):
@@ -69,21 +70,96 @@ def text_to_number(recipe):
         return recipe
 
 
-def decode_string_and_api_call(image_string):
+def google_api_call(image_string):
     """
     function to decode the base64 decoded string and make a google vision api
     call with the picture.
     """
-    # decode image_string
-    decoded_string = base64.b64decode(image_string)
+    image = base64.b64decode(image_string)
 
     # Instantiates a client
     client = vision.ImageAnnotatorClient()
 
     # Perform text detection
-    image = types.Image(content=decoded_string)
+    image = types.Image(content=image)
     response = client.document_text_detection(image=image)
     texts = response.text_annotations
     blocks = response.full_text_annotation
 
     return texts, blocks
+
+
+def find_order(recipe):
+    """
+    function to find an order in a string that contains instructions
+    in the form of:
+    "these are my instructions: 1. chop onions 2. fry onions
+    3. eat onions 4. digest onion"
+
+    will be transformed to
+
+    {'instructions': [{'steps': 'these are my instructions: '},
+    {'steps': '1. chop onions '},
+    {'steps': '2. fry onions '},
+    {'steps': '3. eat onions '},
+    {'steps': '4. digest onion'}]}
+
+    """
+
+    nums = []
+
+    steps = []
+
+    for i in range(len(recipe)):
+
+        if recipe[i].isnumeric():
+
+            nums.append([i, recipe[i]])
+
+    # check if first number in string is 1
+    if nums[0][1] == "1":
+
+        index_order = [0]
+
+        counter = 2
+
+        for i in range(1, len(nums)):
+
+            # check if there are at least 10 characters between
+            # assumed instances of structure in the string.
+            if nums[i][1] == str(counter):
+
+                if (nums[i][0] - nums[index_order[-1]][0]) > 10:
+
+                    index_order.append(i)
+
+                    counter = counter + 1
+
+        # check if there is at least a succesion of 1, 2, 3 in the string.
+        # If that is the case the assumption is that the string is structured.
+        if len(index_order) > 2:
+
+            # check if string started with "1"
+            if nums[0][0] > 1:
+
+                steps.append({"steps": recipe[:nums[0][0]]})
+
+                # iterate over index_order except the last element since it needs
+                # to be treated differently
+                for i in range(len(index_order) - 1):
+
+                    steps.append(
+                        {"steps": recipe[nums[index_order[i]][0]:nums[index_order[i+1]][0]]})
+
+                # append the last step
+                steps.append({"steps": recipe[nums[index_order[-1]][0]:]})
+
+                return {"instructions": steps}
+
+        else:
+
+            return {"instructions": recipe}
+
+    else:
+
+        return {"instructions": recipe}

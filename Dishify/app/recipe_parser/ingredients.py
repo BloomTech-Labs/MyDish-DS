@@ -1,30 +1,23 @@
 import re
-from recipe_parser.helper import text_to_number, improve_fractions
+from recipe_parser.helper import improve_fractions, text_to_number, is_number
 import json
 
 
-def parse_ingredients(recipe):
-    """
-    base dictionary
-    """
-    base_dict_ingr = {"quantity": None, "unit": None, "ingredient": None}
+def parse_ingredients(texts):
 
-    # list to save modified base dictionaries
+    # list to save dictionaries
     ingredients = []
 
-    improve_fractions(recipe)
+    #  improve parsability and transform into an iterabel format:
+    #  line by line, word by word
+    recipe = texts[0].description
 
-    # remove all special characters
-    recipe = re.sub('[^A-Za-z0-9 ,;.:-?!""\n]+', '', recipe)
+    recipe = improve_fractions(recipe)
 
-    # apply the text2num library if the recipe is in French, Spanish or English.
-    # This will transform written numbers (like "one hundred") to
-    # integers in string format (like "100"). If the time permits a german
-    # version of this library will be implemented.
-    recipe = text_to_number(recipe)
+    recipe = re.sub('[^A-Za-z0-9 ,;.:/-?!""\n]+', '', recipe)
 
-    # transform the string into an iterable format, line for line, word for word.
-    recipe = [line.split() for line in recipe.splitlines()]
+    recipe = [text_to_number(line, texts).split()
+              for line in recipe.splitlines()]
 
     # parse each line of the recipe for unit, quantity and ingredient
     for line in recipe:
