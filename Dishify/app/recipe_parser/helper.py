@@ -1,6 +1,5 @@
 from text_to_num import alpha2digit
-import base64
-import io
+from io import BytesIO
 import os
 from google.cloud import vision
 from google.cloud.vision import types
@@ -44,7 +43,7 @@ def is_number(n):
     return True
 
 
-def text_to_number(recipe):
+def text_to_number(recipe, texts):
     """
     function to transform written numbers in a string ("one hundred horses") to
     their integer form ("100 horses"). Works for English, Spanish and French.
@@ -72,8 +71,7 @@ def text_to_number(recipe):
 
 def google_api_call(image_string):
     """
-    function to decode the base64 decoded string and make a google vision api
-    call with the picture.
+    make google vision api call
     """
     image = base64.b64decode(image_string)
 
@@ -95,15 +93,12 @@ def find_order(recipe):
     in the form of:
     "these are my instructions: 1. chop onions 2. fry onions
     3. eat onions 4. digest onion"
-
     will be transformed to
-
     {'instructions': [{'steps': 'these are my instructions: '},
     {'steps': '1. chop onions '},
     {'steps': '2. fry onions '},
     {'steps': '3. eat onions '},
     {'steps': '4. digest onion'}]}
-
     """
 
     nums = []

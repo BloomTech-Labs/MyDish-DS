@@ -26,79 +26,103 @@ def parse_ingredients(texts):
 
         if length == 1:
 
-            # either this line is part of the previous line or it is an ingredient that needs no unit or qantity. This code will treat it as an ingredient.
-            # Web will hopefully implement functionality that enables the user to add this line to the previous ingredient if necessary.
+            # either this line is part of the previous line or it is an ingredient
+            # that needs no unit or qantity. This code will treat it as an ingredient.
+            # Web will hopefully implement functionality that enables the user to
+            # add this line to the previous ingredient if necessary.
 
-            new_entry = base_dict_ingr.copy()
-            new_entry["ingredient"] = line[0]
-            ingredients.append(new_entry)
+            ingredients.append(
+                {"quantity": None, "unit": None, "ingredient": line[0]})
+            continue
 
         elif length == 2:
 
             # this line is most probably an ingredient and a quantity
 
-            new_entry = base_dict_ingr.copy()
-
             if (is_number(line[0][0]) and not is_number(line[1][0])):
 
-                new_entry["quantity"] = line[0]
-                new_entry["ingredient"] = line[1]
-                ingredients.append(new_entry)
+                ingredients.append(
+                    {"quantity": line[0], "unit": None, "ingredient": line[1]})
+                continue
 
             elif (not is_number(line[0][0]) and is_number(line[1][0])):
 
-                new_entry["quantity"] = line[1]
-                new_entry["ingredient"] = line[0]
-                ingredients.append(new_entry)
+                ingredients.append(
+                    {"quantity": line[1], "unit": None, "ingredient": line[0]})
+                continue
 
             else:
 
-                # the last case covers both the possibility that both strings contain a number or that both dont. For both cases the same treatment makes sense.
-                # 1. If they both contain numbers something went wrong and saving this line only under ingredient will make it easier for the user to modify it.
-                # 2. If they both dont contain numbers they are probably part of the previous line and probably part of the ingredient part of that line. Saving
-                # this as one string under ingredient will make it easier for the user to modify this part.
-
-                new_entry["ingredient"] = " ".join(line)
-                ingredients.append(new_entry)
+                # the last case covers both the possibility that both strings contain
+                # a number or that both dont. For both cases the same treatment makes sense.
+                # 1. If they both contain numbers something went wrong and saving this line
+                # only under ingredient will make it easier for the user to modify it.
+                # 2. If they both dont contain numbers they are probably part of the previous
+                # line and probably part of the ingredient part of that line. Saving
+                # this as one string under ingredient will make it easier for the user
+                # to modify this part.
+                ingredients.append(
+                    {"quantity": None, "unit": None, "ingredient": " ".join(line)})
+                continue
 
         elif length > 2:
 
-            # here a if else statement needs to be added that checks if there is a "," in the string. If so the second part needs to be checked if it is
-            # a seperate ingredient.
+            number_map = [1 if is_number(word) else 0 for word in line]
 
-            # this line contains most probably an amount, a unit and an ingredient
+            instances_number = sum(number_map)
 
-            new_entry = base_dict_ingr.copy()
+            if instances_number == 0:
 
-            for i in range(length):
+                # in the line there are no words that begin with a number
 
-                if (is_number(line[i]) and (i < (length - 1))):
+                ingredients.append(
+                    {"quantity": None, "unit": None, "ingredient": " ".join(line)})
+                continue
 
-                    new_entry["quantity"] = line[i]
-                    new_entry["unit"] = line[i+1]
+            elif instances_number == 1:
 
-                    del line[i:i+2]
-                    new_entry["ingredient"] = " ".join(line)
+                # in the line there is one word that begins with a number
 
-                    ingredients.append(new_entry)
+                index = number_map.index(1)
 
-                elif (is_number(line[i]) and (i == (length - 1))):
+                if index == 0:
 
-                    new_entry["quantity"] = line[i]
+                    ingredients.append(
+                        {"quantity": line[0], "unit": line[1], "ingredient": " ".join(line[2:])})
+                    continue
 
-                    del line[i]
-                    new_entry["ingredient"] = " ".join(line)
+                elif index == 1:
 
-                    ingredients.append(new_entry)
+                    ingredients.append(
+                        {"quantity": line[1], "unit": line[0], "ingredient": " ".join(line[2:])})
+                    continue
+
+                elif index == (length - 2):
+
+                    ingredients.append(
+                        {"quantity": line[-2], "unit": line[-1], "ingredient": " ".join(line[:-2])})
+                    continue
+
+                elif index == (length - 1):
+
+                    ingredients.append(
+                        {"quantity": line[-1], "unit": line[-2], "ingredient": " ".join(line[:-2])})
+                    continue
 
                 else:
 
-                    new_entry["ingredient"] = " ".join(line)
+                    ingredients.append(
+                        {"quantity": None, "unit": None, "ingredient": " ".join(line)})
+                    continue
 
-                    ingredients.append(new_entry)
+            else:
 
-        else:
-            continue
+                # in the line there are two or more words that begin with a number
 
-        ingredients_dict = {"ingredients": ingredients}
-        return json.dumps(ingredients_dict)
+                ingredients.append(
+                    {"quantity": None, "unit": None, "ingredient": " ".join(line)})
+                continue
+
+    ingredients_dict = {"ingredients": ingredients}
+
+    return json.dumps(ingredients_dict)

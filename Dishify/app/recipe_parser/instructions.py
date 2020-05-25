@@ -3,9 +3,12 @@ import json
 import re
 
 
-def parse_instructions(recipe):
-
-    # base dictionary
+def parse_instructions(texts, blocks):
+    """
+    if google api detects several blocks of text those will be returned individually.
+    if only one block of text is detected find_order() will be applied
+    to the text.
+    """
 
     if len(blocks.pages[0].blocks) < 2:
 
@@ -17,9 +20,8 @@ def parse_instructions(recipe):
 
         recipe = text_to_number(recipe, texts)
 
-        # recipe = recipe.splitlines()
+        instructions_dict = find_order(recipe)
 
-        instructions_dict = {"instructions": [texts[0].description]}
         return json.dumps(instructions_dict)
 
     else:
@@ -43,4 +45,5 @@ def parse_instructions(recipe):
         blocks_splitted = all_blocks.split("new block")[1:]
 
         instructions_dict = {"instructions": blocks_splitted}
+
         return json.dumps(instructions_dict)
