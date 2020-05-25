@@ -41,6 +41,8 @@ WANDB_API_KEY = os.getenv("WANDB_API_KEY")
 
 # Will implement the logic where a dictionary is converted into a pickle file
 # Then, the pickle file will be loaded in for training.
+# That logic lives in the util folder. Needs to be tuned a little to work with
+# this model.
 with open('data/Inception_multilabel_detection_model.pkl', 'rb') as f:
     cnn_data = pickle.load(f)
 
@@ -69,33 +71,36 @@ def build_model(num_filters=2, dropout_rate=0.3, base_kernel_size=2):
 
     # Convolution Layer - 3 Convolutions, each connected to input embeddings
     # Branch a
-    conv_a = Conv1D(filters=num_filters,
+    conv_a = Conv2D(filters=num_filters,
                     kernel_size=base_kernel_size,
                     activation='relu',
                     )(embedding_dropped)
-    pooled_conv_a = GlobalMaxPooling1D()(conv_a)
+    pooled_conv_a = MaxPooling2D()(conv_a)
     pooled_conv_dropped_a = Dropout(dropout_rate)(pooled_conv_a)
 
     # Branch b
-    conv_b = Conv1D(filters=num_filters,
+    conv_b = Conv2D(filters=num_filters,
                     kernel_size=base_kernel_size + 1,
                     activation='relu',
                     )(embedding_dropped)
-    pooled_conv_b = GlobalMaxPooling1D()(conv_b)
+    pooled_conv_b = MaxPooling2D()(conv_b)
     pooled_conv_dropped_b = Dropout(dropout_rate)(pooled_conv_b)
 
     # Branch c
-    conv_c = Conv1D(filters=num_filters,
+    conv_c = Conv2D(filters=num_filters,
                     kernel_size=base_kernel_size + 2,
                     activation='relu',
                     )(embedding_dropped)
-    pooled_conv_c = GlobalMaxPooling1D()(conv_c)
+    pooled_conv_c = MaxMaxPooling2D()(conv_c)
     pooled_conv_dropped_c = Dropout(dropout_rate)(pooled_conv_c)
 
     # Collect branches into a single Convolution layer
     concat = Concatenate()(
         [pooled_conv_dropped_a, pooled_conv_dropped_b, pooled_conv_dropped_c])
     concat_dropped = Dropout(dropout_rate)(concat)
+
+    # Flatten Layer
+    flat = Flatten()(concat_dropped)
 
     # Dense output layer
     prob = Dense(units=1,  # dimensionality of the output space
@@ -113,5 +118,4 @@ model.compile(loss=config.loss_function,
 model.fit(x_train, y_train, batch_size=32,
           steps_per_epoch=len(x_train) / 32, epochs=config.epochs,
           validation_data=(x_val, y_val),
-          callbacks=[WandbCallback(validation_data=(x_val, y_val),
-                                   labels=["appropriate", "inappropriate"])])
+          callbacks=[WandbCallback(validation_data=(x_val, y_val))])
