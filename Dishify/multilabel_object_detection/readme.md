@@ -16,8 +16,8 @@ needs to be debugged. The problem is a library issue, it's outdated. Particularl
 from [multimodal_keras_wrapper](https://github.com/MarcBS/multimodal_keras_wrapper).
 
 - train.py: main logic for running the model. In your terminal or AWS, run:
-    ```python -u trian.py config_file=config callbacks=callbacks
-
+    ```
+    python -u trian.py config_file=config callbacks=callbacks
     ```
 
 - config.py: Contains model parameter/hyper-param configurations. Also the path to the data is defined here.
@@ -58,7 +58,9 @@ installed, when running the model, you'll recieve this error:
 
 ![Scipy.misc Error](imgs/AWS_console.png)
 
+
 This needs to be solved. It is getting an error when trying to augment the images.
+
 ---
 
 ## utils
@@ -72,7 +74,7 @@ Two python files, each with helpful functions to be used during model creation o
 
 ## yolo_detector
 
-I work in progress model, using yolo and darknet.
+A work in progress model, using yolo and darknet.
 
 - detect_images.py: Contains the logic for one of my the endpoints for this feature. Check the file for further descriptions on what it does.
 
@@ -83,3 +85,33 @@ I work in progress model, using yolo and darknet.
 - yolo_model/yolo_utils: Utilities for the yolo model.
 
 - yolo_model/yolo_dataset: data pre-processing for the model.
+
+---
+
+# How to utilize Sagemaker
+
+1. With you MyDish AWS account, log in and go to the Management console:
+
+    ![Management Console](imgs/AWS_manager.png)
+
+    Click on "Amazon SageMaker".
+
+
+2.  In the SageMaker Console:
+
+    ![SageMaker Console](imgs/AWS_sageconsole.png)
+
+    Click on "Amazon SageMaker Studio".
+
+
+3. You'll see an "Open Studio" option, click on it:
+
+    ![Sagemaker Studio](imgs/AWS_Sagemaker.png)
+
+
+4. And, you'll see a very famaliar layout:
+
+    ![SageMaker Notebook](imgs/AWS_notebook.png)
+
+    You have the option to open up a jupyter notebook or work as if you are working in a text editor/terminal.
+    You also have GPU options, among other things. Pretty sweet. Make sure to check the cost when ever using anything in AWS.
