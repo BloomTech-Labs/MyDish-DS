@@ -90,7 +90,7 @@ A work in progress model, using yolo and darknet.
 
 # How to utilize Sagemaker
 
-1. With you MyDish AWS account, log in and go to the Management console:
+1. With your MyDish AWS account, log in and go to the Management console:
 
     ![Management Console](imgs/AWS_manager.png)
 

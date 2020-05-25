@@ -25,3 +25,4 @@ keras-preprocessing
 recipe_scrapers
 nltk
 beautifulsoup4
+wandb

@@ -1,7 +1,7 @@
 # Links To Articles/Papers That Can Help Understand This Problem
 ---
 
-Add to this readme to create a web of links to helpful reads. 
+Add to this readme to create a web of links to helpful reads.
 
 ## Articles
 
@@ -32,3 +32,21 @@ Add to this readme to create a web of links to helpful reads.
 - [DarkNet](https://pjreddie.com/darknet/install/)
 
 - [Yolo](https://pjreddie.com/darknet/yolo/)
+
+
+## YouTube Videos
+
+- [How Convolutional Neural Networks work](https://www.youtube.com/watch?v=FmpDIaiMIeA)
+
+- [Lesson 3: Deep Learning 2019 - Data blocks; Multi-label classification; Segmentation](https://www.youtube.com/watch?v=MpZxV6DVsmM&t=743s)
+
+
+## Python Notebooks
+
+- [François Chollet: Intro To Keras For Engineers](https://colab.research.google.com/drive/1lWUGZarlbORaHYUZlF9muCgpPl8pEvve)
+
+- [François Chollet: Image Classification from Scratch](https://colab.research.google.com/drive/1umJnCp8tZ7UDTYSQsuWdKRhqbHts38AC)
+
+- [Aakash Kumar Nain: What does a CNN See?](https://colab.research.google.com/drive/1xM6UZ9OdpGDnHBljZ0RglHV_kBrZ4e-9)
+
+- [Jason Antic: EffResNetComparison](https://colab.research.google.com/github/rwightman/pytorch-image-models/blob/master/notebooks/EffResNetComparison.ipynb)
