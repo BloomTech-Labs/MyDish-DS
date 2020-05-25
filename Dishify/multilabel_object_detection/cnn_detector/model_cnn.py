@@ -71,32 +71,49 @@ def build_model(num_filters=2, dropout_rate=0.3, base_kernel_size=2):
 
     # Convolution Layer - 3 Convolutions, each connected to input embeddings
     # Branch a
-    conv_a = Conv2D(filters=num_filters,
-                    kernel_size=base_kernel_size,
-                    activation='relu',
-                    )(embedding_dropped)
+    conv_a = Convolution2D(filters=num_filters,
+                           kernel_size=base_kernel_size,
+                           activation='relu',
+                           )(embedding_dropped)
     pooled_conv_a = MaxPooling2D()(conv_a)
     pooled_conv_dropped_a = Dropout(dropout_rate)(pooled_conv_a)
 
     # Branch b
-    conv_b = Conv2D(filters=num_filters,
-                    kernel_size=base_kernel_size + 1,
-                    activation='relu',
-                    )(embedding_dropped)
+    conv_b = Convolution2D(filters=num_filters,
+                           kernel_size=base_kernel_size + 1,
+                           activation='relu',
+                           )(embedding_dropped)
     pooled_conv_b = MaxPooling2D()(conv_b)
     pooled_conv_dropped_b = Dropout(dropout_rate)(pooled_conv_b)
 
     # Branch c
-    conv_c = Conv2D(filters=num_filters,
-                    kernel_size=base_kernel_size + 2,
-                    activation='relu',
-                    )(embedding_dropped)
+    conv_c = Convolution2D(filters=num_filters,
+                           kernel_size=base_kernel_size + 2,
+                           activation='relu',
+                           )(embedding_dropped)
     pooled_conv_c = MaxMaxPooling2D()(conv_c)
     pooled_conv_dropped_c = Dropout(dropout_rate)(pooled_conv_c)
 
+    conv_d = Convolution2D(filters=num_filters,
+                           kernel_size=base_kernel_size + 3,
+                           activation='relu',
+                           )(embedding_dropped)
+
+    pooled_conv_d = MaxPooling2D()(conv_d)
+    pooled_conv_dropped_d = Dropout(droput_rate)(pooled_conv_d)
+
+    conv_e = Convolution2D(filters=num_filters,
+                           kernel_size=base_kernel_size + 4,
+                           activation='relu',
+                           )(embedding_dropped)
+
+    pooled_conv_e = MaxPooling2D()(conv_e)
+    pooled_conv_dropped_e = Dropout(droput_rate)(pooled_conv_e)
+
     # Collect branches into a single Convolution layer
     concat = Concatenate()(
-        [pooled_conv_dropped_a, pooled_conv_dropped_b, pooled_conv_dropped_c])
+        [pooled_conv_dropped_a, pooled_conv_dropped_b, pooled_conv_dropped_c,
+         pooled_conv_d, pooled_conv_e])
     concat_dropped = Dropout(dropout_rate)(concat)
 
     # Flatten Layer
@@ -105,7 +122,7 @@ def build_model(num_filters=2, dropout_rate=0.3, base_kernel_size=2):
     # Dense output layer
     prob = Dense(units=1,  # dimensionality of the output space
                  activation='sigmoid',
-                 )(concat_dropped)
+                 )(flat)
 
     return Model(inputs, prob)
 
