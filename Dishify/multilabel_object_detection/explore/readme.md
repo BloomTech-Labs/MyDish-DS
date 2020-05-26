@@ -6,11 +6,8 @@ training building a dataset.
 Note: The data I compiled can be found in MyDish AWS S3 Bucket named:
   - [mydish-multilabel-objectdetection](https://console.aws.amazon.com/s3/buckets/mydish-multilabel-objectdetection?region=us-east-2)
 
-<<<<<<< HEAD
-  Ask your TL or SL for acces to the MyDish AWS account.
-=======
-  Ask your TL or SL for access to the MyDish AWS account.
->>>>>>> 6ba1b32e91966692315a4d99c5ef8cca7e03d938
+    Ask your TL or SL for access to the MyDish AWS account.
+
 
 ## Scrapers
 - [Google Images Download](https://github.com/hardikvasa/google-images-download)

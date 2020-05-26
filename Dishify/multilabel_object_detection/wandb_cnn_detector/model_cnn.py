@@ -12,7 +12,9 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import ModelCheckpoint, TensorBoard, CSVLogger
 import keras.backend as K
 from keras.optimizers import SGD, RMSprop, Adam
+from tensorflow.keras.callbacks import EarlyStopping
 
+from config_cnn import load_params
 import wandb
 from wandb.keras import WandbCallback
 import load_dotenv
@@ -24,7 +26,8 @@ import pickle
 # Set defaults for each parameter
 hyperparameter_defaults = dict(
     learning_rate=0.001,
-    epochs=5,
+    epochs=10,
+    batch_size=5,
     optimizer="adam",
     num_filters=2,
     base_kernel_size=2,
@@ -46,6 +49,21 @@ WANDB_API_KEY = os.getenv("WANDB_API_KEY")
 with open('data/Dataset_Food_Recipes5k_complete.pkl', 'rb') as f:
     cnn_data = pickle.load(f)
 
+train_labels = 'data/images/Recipes5k/annotations/train_labels.txt'
+val_labels = 'data/images/Recipes5k/annotations/val_labels.txt'
+classes_labels = 'data/images/Recipes5k/annotations/classes_Recipes5k.txt'
+ingred_labels = 'data/images/Recipes5k/annotations/ingredients_Recipes5k'
+
+# number of classes
+num_classes = len(classes_labels)
+
+# train/val
+(x_train, y_train), (x_val, y_val) = cnn_data
+
+# normalize data
+X_train = X_train.astype('float32') / 255.
+X_test = X_test.astype('float32') / 255.
+
 
 def build_model(num_filters=2, dropout_rate=0.3, base_kernel_size=2):
     """Builds a CNN with hyperparamters.
@@ -57,82 +75,94 @@ def build_model(num_filters=2, dropout_rate=0.3, base_kernel_size=2):
     returns: Instantiated, uncompiled model.
     """
     # Input Layer
-    inputs = Input(shape=(MAX_SEQ_LENGTH,))
+    inputs = Input(shape=(params['INPUTS_IDS_MODEL']))
 
-    # Embedding layer
-    embedding_layer = Embedding(input_dim=N_FEATURES + 1,
-                                output_dim=EMBEDDINGS_LEN,
-                                # pre-trained embeddings
-                                weights=[embeddings_index],
-                                input_length=MAX_SEQ_LENGTH,
-                                trainable=False,
-                                )(inputs)
-    embedding_dropped = Dropout(dropout_rate)(embedding_layer)
+    # Convolution2D layers
+    conv1 = Conv2D(64, (3, 3), activation='relu',
+                   padding='same', name='conv1_1')(inputs)
 
-    # Convolution Layer - 3 Convolutions, each connected to input embeddings
-    # Branch a
-    conv_a = Convolution2D(filters=num_filters,
-                           kernel_size=base_kernel_size,
-                           activation='relu',
-                           )(embedding_dropped)
-    pooled_conv_a = MaxPooling2D()(conv_a)
-    pooled_conv_dropped_a = Dropout(dropout_rate)(pooled_conv_a)
+    conv1 = Conv2D(64, (3, 3), activation='relu', padding='same')(conv1)
+    conv1 = Conv2D(64, (3, 3), activation='relu', padding='same')(conv1)
+    pool1 = MaxPooling2D(pool_size=(2, 2))(conv1)
 
-    # Branch b
-    conv_b = Convolution2D(filters=num_filters,
-                           kernel_size=base_kernel_size + 1,
-                           activation='relu',
-                           )(embedding_dropped)
-    pooled_conv_b = MaxPooling2D()(conv_b)
-    pooled_conv_dropped_b = Dropout(dropout_rate)(pooled_conv_b)
+    conv2 = Conv2D(128, (3, 3), activation='relu', padding='same')(pool1)
+    conv2 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv2)
+    conv2 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv2)
+    pool2 = MaxPooling2D(pool_size=(2, 2))(conv2)
 
-    # Branch c
-    conv_c = Convolution2D(filters=num_filters,
-                           kernel_size=base_kernel_size + 2,
-                           activation='relu',
-                           )(embedding_dropped)
-    pooled_conv_c = MaxMaxPooling2D()(conv_c)
-    pooled_conv_dropped_c = Dropout(dropout_rate)(pooled_conv_c)
+    conv3 = Conv2D(128, (3, 3), activation='relu', padding='same')(pool2)
+    conv3 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv3)
+    conv3 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv3)
+    pool3 = MaxPooling2D(pool_size=(2, 2))(conv3)
 
-    conv_d = Convolution2D(filters=num_filters,
-                           kernel_size=base_kernel_size + 3,
-                           activation='relu',
-                           )(embedding_dropped)
+    conv4 = Conv2D(256, (3, 3), activation='relu', padding='same')(pool3)
+    conv4 = Conv2D(256, (3, 3), activation='relu', padding='same')(conv4)
+    conv4 = Conv2D(256, (3, 3), activation='relu', padding='same')(conv4)
+    pool4 = MaxPooling2D(pool_size=(2, 2))(conv4)
 
-    pooled_conv_d = MaxPooling2D()(conv_d)
-    pooled_conv_dropped_d = Dropout(droput_rate)(pooled_conv_d)
+    # Middle of the path (bottleneck)
+    conv5 = Conv2D(512, (3, 3), activation='relu', padding='same')(pool4)
+    conv5 = Conv2D(512, (3, 3), activation='relu', padding='same')(conv5)
+    conv5 = Conv2D(512, (3, 3), activation='relu', padding='same')(conv5)
 
-    conv_e = Convolution2D(filters=num_filters,
-                           kernel_size=base_kernel_size + 4,
-                           activation='relu',
-                           )(embedding_dropped)
+    # Upsampling path
+    up_conv5 = UpSampling2D(size=(2, 2))(conv5)
+    up_conv5 = ZeroPadding2D()(up_conv5)
 
-    pooled_conv_e = MaxPooling2D()(conv_e)
-    pooled_conv_dropped_e = Dropout(droput_rate)(pooled_conv_e)
+    conv6 = Conv2D(256, (3, 3), activation='relu',
+                   padding='same')(up_conv5)
+    conv6 = Conv2D(256, (3, 3), activation='relu', padding='same')(conv6)
+    conv6 = Conv2D(256, (3, 3), activation='relu', padding='same')(conv6)
 
-    # Collect branches into a single Convolution layer
-    concat = Concatenate()(
-        [pooled_conv_dropped_a, pooled_conv_dropped_b, pooled_conv_dropped_c,
-         pooled_conv_d, pooled_conv_e])
-    concat_dropped = Dropout(dropout_rate)(concat)
+    up_conv6 = UpSampling2D(size=(2, 2))(conv6)
+    up_conv6 = ZeroPadding2D()(up_conv6)
 
-    # Flatten Layer
-    flat = Flatten()(concat_dropped)
+    conv7 = Conv2D(128, (3, 3), activation='relu',
+                   padding='same')(up_conv6)
+    conv7 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv7)
+    conv7 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv7)
 
-    # Dense output layer
-    prob = Dense(units=1,  # dimensionality of the output space
-                 activation='sigmoid',
-                 )(flat)
+    up_conv7 = UpSampling2D(size=(2, 2))(conv7)
+    up_conv7 = ZeroPadding2D()(up_conv7)
 
-    return Model(inputs, prob)
+    conv8 = Conv2D(128, (3, 3), activation='relu',
+                   padding='same')(up_conv7)
+    conv8 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv8)
+    conv8 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv8)
+
+    up_conv8 = UpSampling2D(size=(2, 2))(conv8)
+    up_conv8 = ZeroPadding2D()(up_conv8)
+
+    conv9 = Conv2D(64, (3, 3), activation='relu', padding='same')(up_conv8)
+    conv9 = Conv2D(64, (3, 3), activation='relu', padding='same')(conv9)
+    conv9 = Conv2D(64, (3, 3), activation='relu', padding='same')(conv9)
+
+    # Final classification layer (batch_size, classes, width, height)
+    x = Conv2D(params['NUM_CLASSES'], (1, 1), border_mode='same')(conv9)
+
+    # Create last layer (classification)
+    x = Dense(nOutput, activation=activation_type)(x)
+
+    x = Dense(2000, activation='tanh')(x)
+
+    x = Dense(1000, activation='tanh')(x)
+
+    x = Dense(500, activation='tanh')(x)
+
+    # output
+    out = Activation(params['CLASSIFIER_ACTIVATION'],
+                     name=self.ids_outputs[0])(x)
+
+    return Model(inputs, out)
 
 
 model = build_model(config.num_filters, config.dropout_rate,
                     config.base_kernel_size)
 model.compile(loss=config.loss_function,
-              optimizer=config.optimizer, metrics=['accuracy'])
+              optimizer=config.optimizer, metrics=['categorical_accuracy'])
 
 model.fit(x_train, y_train, batch_size=32,
           steps_per_epoch=len(x_train) / 32, epochs=config.epochs,
           validation_data=(x_val, y_val),
-          callbacks=[WandbCallback(validation_data=(x_val, y_val))])
+          callbacks=[WandbCallback(validation_data=(x_val, y_val),
+                                   labels=[train_labels, classes_labels]))])
