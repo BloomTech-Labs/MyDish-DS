@@ -1,16 +1,14 @@
 # 🍔 MyDish
 
-🍽 A source-control cooking app built in React Native which allows users to quickly make and see changes to their recipe. ​ You can find the deployed project on the Google Play Store for Android devices or via TestFlight for iOS devices. ​ TestFlight Instructions:
+🍽 A source-control cooking app built in React Native which allows users to quickly make and see changes to their recipe. ​ You can find the deployed project on the [Google Play Store](https://play.google.com/store/apps/details?id=com.lambdaschool.mydish) for Android devices or via [TestFlight](https://apps.apple.com/us/app/testflight/id899247664) for iOS devices. ​ TestFlight Instructions:
 
 - Search for TestFlight in the App Store.
-- Once installed, follow this link.
+- Once installed, follow this [link](https://apps.apple.com/us/app/testflight/id899247664).
 
-![mydish_mobile](Dishify/multilabel_object_detection/imgs/dish/DISH_mobile.png)
+![mydish_mobile](Dishify/multilabel_object_detection/imgs/dish/red-logo.png)
 
-
-Below will fo a description of the features along with a gif animation of the feature. Lets see if it works. . .
-
-![Neals Feature](Dishify/multilabel_object_detection/imgs/dish/feature_1.gif)
+- For information on the endpoints deployed to AWS, refer to the [API Overview](#API-Overview) section of this readme.
+- For a visualizations of the features deployed, refer to [Feature Gif Animation](#GIF-Animation)
 
 ## Content
 - [Project Overview](#Project-Overview)
@@ -22,6 +20,7 @@ Below will fo a description of the features along with a gif animation of the fe
 - [API Overview](#API-Overview)
   - [Architecture](#Architecture)
   - [Endpoints](#Endpoints)
+  - [Feature Gif Animation](#Feature-Gif-Animation)
   - [AWS Guide](#AWS-Guide)
   - [Local Testing](#Local-Testing)
   - [WEB Documentation](#WEB-Documentation)
@@ -221,6 +220,16 @@ There is only one current deployed version which can be found locally in the Dis
 
 [Deployed AWS Endpoint](https://3z6kv0n0v6.execute-api.us-east-2.amazonaws.com/test/dishify)
 
+
+### Feature Gif Animation
+
+1. Ingredient Getter: Feature 1
+
+Description:
+
+  After a user enters a recipe name this feature queries a database of recipes to find all recipes with titles that include words in the entered name. The ingredients are then compared across these matching recipes. Only those ingredients that appear in excess of 25% of recipes are returned. For each ingredient the most common quantity and unit associated with the ingredient are also returned.
+
+![Neals Feature](Dishify/multilabel_object_detection/imgs/dish/feature_1.gif)
 
 ### AWS Guide
 
