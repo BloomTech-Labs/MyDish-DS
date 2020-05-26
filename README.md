@@ -1,5 +1,17 @@
 # 🍔 MyDish
 
+🍽 A source-control cooking app built in React Native which allows users to quickly make and see changes to their recipe. ​ You can find the deployed project on the Google Play Store for Android devices or via TestFlight for iOS devices. ​ TestFlight Instructions:
+
+- Search for TestFlight in the App Store.
+- Once installed, follow this link.
+
+[mydish_mobile](Dishify/multilabel_object_detection/imgs/dish/DISH_mobile.png)
+
+
+Below will fo a description of the features along with a gif animation of the feature. Lets see if it works. . .
+
+![Neals Feature]({Dishify/multilabel_object_detction/imgs/dish/feature_1.gif)
+
 ## Content
 - [Project Overview](#Project-Overview)
   - [Installation and Set-Up](#Installation-and-Set-Up)

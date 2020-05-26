@@ -25,7 +25,7 @@ pipenv install wandb
 
 ## Training and Tuning
 
-- Configure the hyper-parameters by editing the [sweep_cnn_model.yml](sweep_cnn_model.yaml) file.
+- Configure the hyper-parameters by editing the [sweep_cnn_model.yaml](sweep_cnn_model.yaml) file.
 
 Before you can start training, you must initialize a sweep and run it. In the code cell below, run the first line to get a sweep id which will be needed for the second line.
 
