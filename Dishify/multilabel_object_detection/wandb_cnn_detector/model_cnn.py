@@ -32,7 +32,7 @@ hyperparameter_defaults = dict(
     loss_function="categorical_crossentropy"
 )
 
-wandb.init(config=hyperparameter_defaults)
+wandb.init(project="mydish", config=hyperparameter_defaults)
 config = wandb.config
 
 load_dotenv()
