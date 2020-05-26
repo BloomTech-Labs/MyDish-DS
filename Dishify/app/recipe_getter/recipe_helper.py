@@ -6,7 +6,6 @@ import re
 def parse_ingredients_mod(scraper):
 
     """
-
     """
 
     ingredients = scraper.ingredients()

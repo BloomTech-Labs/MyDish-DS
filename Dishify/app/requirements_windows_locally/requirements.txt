@@ -15,16 +15,11 @@ h11==0.9.0
 html-text==0.5.1
 html5lib==1.0.1
 idna==2.9
-<<<<<<< HEAD:Dishify2/app/requirements.txt
-gunicorn
-numpy==1.18.4
-=======
 isodate==0.6.0
 language-tags==1.0.0
 lxml==4.5.0
 mf2py==1.1.2
 Pillow==7.1.2
->>>>>>> fbe8488cb340ccb96e358d0467b1ae2253d567f6:Dishify/app/requirements_windows_locally/requirements.txt
 protobuf==3.11.3
 psycopg2==2.8.5
 pyasn1==0.4.8
