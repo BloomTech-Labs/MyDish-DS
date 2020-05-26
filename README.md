@@ -10,7 +10,7 @@
 
 Below will fo a description of the features along with a gif animation of the feature. Lets see if it works. . .
 
-![Neals Feature](Dishify/multilabel_object_detction/imgs/dish/feature_1.gif)
+![Neals Feature](Dishify/multilabel_object_detection/imgs/dish/feature_1.gif)
 
 ## Content
 - [Project Overview](#Project-Overview)
