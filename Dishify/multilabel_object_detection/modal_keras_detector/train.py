@@ -63,7 +63,7 @@ def train_model(params):
         ing_model = loadModel(params['STORE_PATH'], params['RELOAD'])
     # Update optimizer either if we are loading or building a model
     ing_model.params = params
-    # ing_model.setOptimizer()
+   # ing_model.setOptimizer()
 
     # Callbacks
     callbacks = buildCallbacks(params, ing_model, dataset)

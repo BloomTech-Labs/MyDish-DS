@@ -92,14 +92,14 @@ def build_dataset(params):
                              type='categorical', id=params['OUTPUTS_IDS_DATASET'][1])
 
         # Dataset is downloaded, can be used again by storing in the defined path.
-        saveDataset(ds, params['STORE_PATH'])
+        ds = saveDataset(ds, params['STORE_PATH'])
 
     else:
         # We can easily recover it with a single line
         ds = loadDataset(params['STORE_PATH'] +
                          '/Dataset_'+params['DATASET_NAME']+'.pkl')
 
-    return ds
+        return ds
 
 
 def convertIngredientsList2BinaryClasses(base_path, data, multilabels, type_list='identifiers'):

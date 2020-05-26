@@ -43,7 +43,7 @@ WANDB_API_KEY = os.getenv("WANDB_API_KEY")
 # Then, the pickle file will be loaded in for training.
 # That logic lives in the util folder. Needs to be tuned a little to work with
 # this model.
-with open('data/Inception_multilabel_detection_model.pkl', 'rb') as f:
+with open('data/Dataset_Food_Recipes5k_complete.pkl', 'rb') as f:
     cnn_data = pickle.load(f)
 
 
