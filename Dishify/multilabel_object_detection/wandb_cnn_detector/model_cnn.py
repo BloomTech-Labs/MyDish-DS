@@ -61,8 +61,8 @@ num_classes = len(classes_labels)
 (x_train, y_train), (x_val, y_val) = cnn_data
 
 # normalize data
-X_train = X_train.astype('float32') / 255.
-X_test = X_test.astype('float32') / 255.
+x_train = x_train.astype('float32') / 255.
+x_val = x_val.astype('float32') / 255.
 
 
 def build_model(num_filters=2, dropout_rate=0.3, base_kernel_size=2):
@@ -160,6 +160,10 @@ model = build_model(config.num_filters, config.dropout_rate,
                     config.base_kernel_size)
 model.compile(loss=config.loss_function,
               optimizer=config.optimizer, metrics=['categorical_accuracy'])
+
+# log the number of total parameters
+config.total_params = model.count_params()
+print("Total params: ", config.total_params)
 
 model.fit(x_train, y_train, batch_size=32,
           steps_per_epoch=len(x_train) / 32, epochs=config.epochs,
