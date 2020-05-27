@@ -201,13 +201,13 @@ Note: Ask your TL or SL for access to Notion and/or Trello.
 
 ### Tech Stack
 
-🐍 [Python 3.7](https://www.python.org/downloads/release/python-374/)
+[Python 3.7](https://www.python.org/downloads/release/python-374/)
 
-⚡️ [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+[FastAPI](https://fastapi.tiangolo.com/)
 
-🔍 [Google Vision API](https://cloud.google.com/vision/docs)
+[Google Vision API](https://cloud.google.com/vision/docs)
 
-🥜 [AWS ElasticBeanstalk](https://aws.amazon.com/elasticbeanstalk/)
+[AWS ElasticBeanstalk](https://aws.amazon.com/elasticbeanstalk/)
 
 
 
