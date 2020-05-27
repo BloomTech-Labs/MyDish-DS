@@ -22,6 +22,7 @@
   - [Architecture](#Architecture)
   - [Endpoints](#Endpoints)
   - [Feature Gif Animation](#Feature-Gif-Animation)
+  - [Presentation Recordings](#Presentation-Recordings)
   - [AWS Guide](#AWS-Guide)
   - [Local Testing](#Local-Testing)
   - [WEB Documentation](#WEB-Documentation)
@@ -224,13 +225,44 @@ There is only one current deployed version which can be found locally in the Dis
 
 ### Feature Gif Animation
 
-1. Ingredient Getter: Feature 1
+#### Ingredient Getter: Feature 1
 
 Description:
 
   After a user enters a recipe name this feature queries a database of recipes to find all recipes with titles that include words in the entered name. The ingredients are then compared across these matching recipes. Only those ingredients that appear in excess of 25% of recipes are returned. For each ingredient the most common quantity and unit associated with the ingredient are also returned.
 
-![Neals Feature](Dishify/multilabel_object_detection/imgs/dish/feature_1.gif)
+  ![Neals Getter Feature](Dishify/multilabel_object_detection/imgs/dish/feature_1.gif)
+
+
+#### Recipe Getter: Feature 2
+
+Description:  
+
+  Robins description goes here. Note for Robin: There are to gifs for the recipe link scraper due to size and time limit for recording. First gif is a demonstration of copying a url, the second is pasting it into the app and getting back the results.
+
+  ![Robins Getter Feature](Dishify/multilabel_object_detection/imgs/dish/feature2_copy.gif)
+
+
+  Now paste the link in the MyDish app and recieve your results
+
+  ![Robins Getter Feature2](Dishify/multilabel_object_detection/imgs/dish/feature2_getter.gif)
+
+
+#### Recipe Parser: Feature 3
+
+Description:
+
+  Recipe Parser description
+
+  ![Robins Parser Feature](Dishify/multilabel_object_detection/imgs/dish/feature_3.gif)
+
+
+
+### Presentation Recordings
+
+[![MyDish Labs23 DataScience Team Recording](Dishify/multilabel_object_detection/imgs/dish/MyDish_ds.png)](https://www.youtube.com/watch?v=Ny2szy4sqpM&feature=youtu.be)
+
+
 
 ### AWS Guide
 
