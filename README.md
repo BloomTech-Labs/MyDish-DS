@@ -1,5 +1,16 @@
 # 🍔 MyDish
 
+![mydish_mobile](Dishify/multilabel_object_detection/imgs/dish/red-logo.png)
+
+
+🍽 A source-control cooking app built in React Native which allows users to quickly make and see changes to their recipe. ​ You can find the deployed project on the [Google Play Store](https://play.google.com/store/apps/details?id=com.lambdaschool.mydish) for Android devices or via [TestFlight](https://apps.apple.com/us/app/testflight/id899247664) for iOS devices. ​ TestFlight Instructions:
+
+- Search for TestFlight in the App Store.
+- Once installed, follow this [link](https://apps.apple.com/us/app/testflight/id899247664).
+
+- For information on the endpoints deployed to AWS, refer to the [API Overview](#API-Overview) section of this readme.
+- For a visualizations of the features deployed, refer to [Feature Gif Animation](#Feature-Gif-Animation)
+
 ## Content
 - [Project Overview](#Project-Overview)
   - [Installation and Set-Up](#Installation-and-Set-Up)
@@ -10,6 +21,8 @@
 - [API Overview](#API-Overview)
   - [Architecture](#Architecture)
   - [Endpoints](#Endpoints)
+  - [Feature Gif Animation](#Feature-Gif-Animation)
+  - [Presentation Recordings](#Presentation-Recordings)
   - [AWS Guide](#AWS-Guide)
   - [Local Testing](#Local-Testing)
   - [WEB Documentation](#WEB-Documentation)
@@ -150,22 +163,22 @@ There are more commands you can use for Git, checkout some of these resourses:
 
 🤖 Labs 21 Contributors
 
-|                                              [Todd Gonzalez](https://github.com/ToddMG)                                               |                                          [Scott Lightfoot](https://github.com/ScottLightfoot)                                          |                                              [John Wesley](https://github.com/johnwesleyharding)                                              |                                             [Ronny Salvarado](https://github.com/RonnySAlvarado)                                             |
+|                                              [Todd Gonzalez](https://github.com/ToddMG)                                               |                                          [Scott Lightfoot](https://github.com/ScottLightfoot)                                          |                                              [John Wesley](https://github.com/johnwesleyharding)                                              |                                                                            |
 | :----------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------: |
-|         [<img src="https://avatars3.githubusercontent.com/u/15056580?s=460&u=89e6de8424d5fc9f86394cb2fe40b420445d4943&v=4" width = "200" />](https://github.com/ToddMG)         |    [<img src="https://avatars0.githubusercontent.com/u/17437655?s=460&v=4" width = "200" />](https://github.com/ScottLightfoot)     |        [<img src="https://ca.slack-edge.com/T4JUEB3ME-UNM8RR9GW-be53c70b1a28-512" width = "200" />](https://github.com/johnwesleyharding)         |       [<img src="https://avatars1.githubusercontent.com/u/45113320?s=460&u=0d866423eecd58299ee005920af28629302a3fe7&v=4" width = "200" />](https://github.com/RonnySAlvarado)       |
-|                         [<img src="https://github.com/favicon.ico" width="15">](https://github.com/ToddMG)                          |                     [<img src="https://github.com/favicon.ico" width="15">](https://github.com/ScottLightfoot)                      |                         [<img src="https://github.com/favicon.ico" width="15">](https://github.com/johnwesleyharding)                          |                        [<img src="https://github.com/favicon.ico" width="15">](https://github.com/RonnySAlvarado)                        |
-| [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) |
+|         [<img src="https://avatars3.githubusercontent.com/u/15056580?s=460&u=89e6de8424d5fc9f86394cb2fe40b420445d4943&v=4" width = "200" />](https://github.com/ToddMG)         |    [<img src="https://avatars0.githubusercontent.com/u/17437655?s=460&v=4" width = "200" />](https://github.com/ScottLightfoot)     |        [<img src="https://ca.slack-edge.com/T4JUEB3ME-UNM8RR9GW-be53c70b1a28-512" width = "200" />](https://github.com/johnwesleyharding)         |  
+|                         [<img src="https://github.com/favicon.ico" width="15">](https://github.com/ToddMG)                          |                     [<img src="https://github.com/favicon.ico" width="15">](https://github.com/ScottLightfoot)                      |                         [<img src="https://github.com/favicon.ico" width="15">](https://github.com/johnwesleyharding)                          |
+| [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) |
 
 
 
 
 🤖 Labs 23 Contributors
 
-|                                              [Neal Whitlock](https://github.com/NealWhitlock)                                               |                                          [Robin Srimal](https://github.com/RobinSrimal)                                          |                                              [Yoni Pineda](https://github.com/Yonipineda)                                              |                                             [Christopher Scott](https://github.com/hoops92)                                             |
+|                                              [Neal Whitlock](https://github.com/NealWhitlock)                                               |                                          [Robin Srimal](https://github.com/RobinSrimal)                                          |                                              [Yoni Pineda](https://github.com/Yonipineda)                                              |                                                                                 |
 | :----------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------: |
-|         [<img src="https://ca.slack-edge.com/T4JUEB3ME-UPU7DPN8Y-72bee622db15-512" width = "200" />](https://github.com/NealWhitlock)         |    [<img src="https://avatars2.githubusercontent.com/u/41923474?s=460&u=2c96dc3dd5347f7f2d90f67158819733f62e1859&v=4" width = "200" />](https://github.com/RobinSrimal)     |        [<img src="https://avatars2.githubusercontent.com/u/48545210?s=460&u=d6d49fd3af1547f9940557a309c63f7f62f76e5f&v=4" width = "200" />](https://github.com/Yonipineda)         |       [<img src="https://ca.slack-edge.com/T4JUEB3ME-UPM6D2L95-bd70b7d4d1a7-512" width = "200" />](https://github.com/hoops92)       |
-|                         [<img src="https://github.com/favicon.ico" width="15">](https://github.com/NealWhitlock)                          |                     [<img src="https://github.com/favicon.ico" width="15">](https://github.com/RobinSrimal)                      |                         [<img src="https://github.com/favicon.ico" width="15">](https://github.com/Yonipineda)                          |                        [<img src="https://github.com/favicon.ico" width="15">](https://github.com/hoops92)                        |
-| [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) |
+|         [<img src="https://ca.slack-edge.com/T4JUEB3ME-UPU7DPN8Y-72bee622db15-512" width = "200" />](https://github.com/NealWhitlock)         |    [<img src="https://avatars2.githubusercontent.com/u/41923474?s=460&u=2c96dc3dd5347f7f2d90f67158819733f62e1859&v=4" width = "200" />](https://github.com/RobinSrimal)     |        [<img src="https://avatars2.githubusercontent.com/u/48545210?s=460&u=d6d49fd3af1547f9940557a309c63f7f62f76e5f&v=4" width = "200" />](https://github.com/Yonipineda)         |      
+|                         [<img src="https://github.com/favicon.ico" width="15">](https://github.com/NealWhitlock)                          |                     [<img src="https://github.com/favicon.ico" width="15">](https://github.com/RobinSrimal)                      |                         [<img src="https://github.com/favicon.ico" width="15">](https://github.com/Yonipineda)                          |    
+| [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/yoni-pineda-8a43841a3/) |
 
 ### Project Guide
 Helpful Resources
@@ -208,6 +221,49 @@ Not Yet Implemented.
 There is only one current deployed version which can be found locally in the Dishify/ Directory.
 
 [Deployed AWS Endpoint](https://3z6kv0n0v6.execute-api.us-east-2.amazonaws.com/test/dishify)
+
+
+### Feature Gif Animation
+
+#### Ingredient Getter: Feature 1
+
+Description:
+
+  After a user enters a recipe name this feature queries a database of recipes to find all recipes with titles that include words in the entered name. The ingredients are then compared across these matching recipes. Only those ingredients that appear in excess of 25% of recipes are returned. For each ingredient the most common quantity and unit associated with the ingredient are also returned.
+
+  ![Neals Getter Feature](Dishify/multilabel_object_detection/imgs/dish/feature_1original.gif)
+
+
+#### Recipe Getter: Feature 2
+
+Description:  
+
+  Robins description goes here. Note for Robin: There are to gifs for the recipe link scraper due to size and time limit for recording. First gif is a demonstration of copying a url, the second is pasting it into the app and getting back the results.
+
+  ![Robins Getter Feature](Dishify/multilabel_object_detection/imgs/dish/feature2_copy.gif)
+
+
+  Now paste the link in the MyDish app and recieve your results
+
+  ![Robins Getter Feature2](Dishify/multilabel_object_detection/imgs/dish/feature2_getter.gif)
+
+
+#### Recipe Parser: Feature 3
+
+Description:
+
+  Recipe Parser description
+
+  ![Robins Parser Feature](Dishify/multilabel_object_detection/imgs/dish/feature_3.gif)
+
+
+
+### Presentation Recordings
+
+The Labs23 DataScience Team Recording
+
+[![MyDish Labs23 DataScience Team Recording](Dishify/multilabel_object_detection/imgs/dish/MyDish_ds.png)](https://www.youtube.com/watch?v=Ny2szy4sqpM&feature=youtu.be)
+
 
 
 ### AWS Guide

@@ -6,7 +6,6 @@ import re
 def parse_ingredients_mod(scraper):
 
     """
-
     """
 
     ingredients = scraper.ingredients()
@@ -121,4 +120,4 @@ def parse_ingredients_mod(scraper):
 
     ingredients_dict = {"ingredients": all_ingredients}
 
-    return ingredients_dict     
+    return ingredients_dict
