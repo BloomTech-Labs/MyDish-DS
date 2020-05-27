@@ -231,7 +231,7 @@ Description:
 
   After a user enters a recipe name this feature queries a database of recipes to find all recipes with titles that include words in the entered name. The ingredients are then compared across these matching recipes. Only those ingredients that appear in excess of 25% of recipes are returned. For each ingredient the most common quantity and unit associated with the ingredient are also returned.
 
-  ![Neals Getter Feature](Dishify/multilabel_object_detection/imgs/dish/feature_1.gif)
+  ![Neals Getter Feature](Dishify/multilabel_object_detection/imgs/dish/feature_1original.gif)
 
 
 #### Recipe Getter: Feature 2
