@@ -260,6 +260,8 @@ Description:
 
 ### Presentation Recordings
 
+The Labs23 DataScience Team Recording
+
 [![MyDish Labs23 DataScience Team Recording](Dishify/multilabel_object_detection/imgs/dish/MyDish_ds.png)](https://www.youtube.com/watch?v=Ny2szy4sqpM&feature=youtu.be)
 
 
