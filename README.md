@@ -224,7 +224,7 @@ Not Yet Implemented.
 
 #### Database Schema
 
-![DB Schema](DIshify/notebooks/ingredient_populater/mydish_db_schema.png)
+![DB Schema](Dishify/notebooks/ingredient_populater/mydish_db_schema.png)
 
 ---
 
