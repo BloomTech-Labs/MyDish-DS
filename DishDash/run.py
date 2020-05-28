@@ -38,15 +38,30 @@ footer = dbc.Container(
         dbc.Col(
             html.P(
                 [
-                    html.Span('Your Name', className='mr-2'),
+                    html.Span('Yoni Pineda', className='mr-2'),
                     html.A(html.I(className='fas fa-envelope-square mr-1'),
-                           href='mailto:<you>@<provider>.com'),
+                           href='mailto:yonipined@icloud.com'),
                     html.A(html.I(className='fab fa-github-square mr-1'),
-                           href='https://github.com/<you>/<repo>'),
+                           href='https://github.com/Yonipineda'),
                     html.A(html.I(className='fab fa-linkedin mr-1'),
-                           href='https://www.linkedin.com/in/<you>/'),
-                    html.A(html.I(className='fab fa-twitter-square mr-1'),
-                           href='https://twitter.com/<you>'),
+                           href='https://www.linkedin.com/in/yoni-pineda-8a43841a3/'),
+
+                    html.Span('Robin Srimal', className='mr-2'),
+                    html.A(html.I(className='fas fa-envelope-square mr-1'),
+                           href='mailto:robin.srimal@gmail.com'),
+                    html.A(html.I(className='fab fa-github-square mr-1'),
+                           href='https://github.com/RobinSrimal'),
+                    html.A(html.I(className='fab fa-linkedin mr-1'),
+                           href='https://www.linkedin.com/in/robin-srimal-a41633135/'),
+
+                    html.Span('Neal Whitlock', className='mr-2'),
+                    html.A(html.I(className='fas fa-envelope-square mr-1'),
+                           href='mailto:nealwhitlock@gmail.com'),
+                    html.A(html.I(className='fab fa-github-square mr-1'),
+                           href='https://github.com/NealWhitlock'),
+                    html.A(html.I(className='fab fa-linkedin mr-1'),
+                           href='https://www.linkedin.com/in/neal-whitlock-4106951a6/'),
+
                 ],
                 className='lead'
             )
