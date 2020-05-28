@@ -24,7 +24,7 @@
   - [Feature Gif Animation](#Feature-Gif-Animation)
   - [Presentation Recordings](#Presentation-Recordings)
   - [Local Testing](#Local-Testing)
-  - [Future deployment on AWS Elastic Beanstalk](#Future deployment on AWS Elastic Beanstalk)
+  - [Future deployment on AWS Elastic Beanstalk](#Future-deployment-on-AWS-Elastic-Beanstalk)
   - [WEB Documentation](#WEB-Documentation)
 - [Extra Information](#Extra-Information)
   - [Contributing](#Contributing)
