@@ -217,12 +217,19 @@ Note: Ask your TL or SL for access to Notion and/or Trello.
 ## API Overview
 
 ### Architecture
+
+#### API Architecture
 Not Yet Implemented.
+
+
+#### Database Schema
+
+![DB Schema](DIshify/notebooks/ingredient_populater/mydish_db_schema.png)
 
 ---
 
 ### Endpoints
-You can test the endpoints via fastapi docs.
+You can test the endpoints via fastapi docs:
 [Fastapi Documention Endpoints](http://dishify2605-env.eba-vdmixjfd.us-east-1.elasticbeanstalk.com/docs)
 
 ---
@@ -277,7 +284,7 @@ Run the api locally using [Fastapi](https://fastapi.tiangolo.com/):
 
 #### Run the API locally
 
-If not in the API/ directory:
+If not in the app/ directory:
 > cd Dishify/app/
 
 Run application.py:
