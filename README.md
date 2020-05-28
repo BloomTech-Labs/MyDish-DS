@@ -233,7 +233,7 @@ Not Yet Implemented.
 You can test the labs23 endpoints via fastapi docs:
 [Endpoints](http://dishify2605-env.eba-vdmixjfd.us-east-1.elasticbeanstalk.com/docs)
 
-A labs21 endpoint has not yet been (as of 28.05.2020) integrated in the labs23 API but is connected to the app itself and hosted and AWS Elastic Beanstalk east 2:
+A labs21 endpoint has not yet been (as of 28.05.2020) integrated in the labs23 API but is connected to the app itself and hosted on AWS Elastic Beanstalk east 2:
 [Ingredient Predictor](http://mydish-ingredientprediction.eba-wmm2grnv.us-east-2.elasticbeanstalk.com/)
 
 In addition the labs21 team created a clone of the backend and hosted it on AWS east 2. It is currently (28.05.2020) not in use but functional:
