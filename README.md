@@ -254,7 +254,7 @@ You can test the endpoints via fastapi docs:
   ![Robins Getter Feature](Dishify/multilabel_object_detection/imgs/dish/feature2_copy.gif)
 
 
-  The ingredients and instruction will be added automatically with the push of a button. 
+  The ingredients and instruction will be added automatically with the press of a button. 
 
   ![Robins Getter Feature2](Dishify/multilabel_object_detection/imgs/dish/feature2_getter.gif)
 
