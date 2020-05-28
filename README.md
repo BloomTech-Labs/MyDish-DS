@@ -44,17 +44,13 @@
 > git clone https://github.com/Lambda-School-Labs/MyDish-DS.git
 
 
-#### Step 2: Install the virtual env on the main MyDish Directory,
-It should be the directory containing the pipfile and pipfile.lock.
+#### Step 2: Install using the requirements.txt file
+It should be the directory containing the requirements.txt file.
 Once you're in that directory, install the packages.
-> pipenv install
-
-
-#### Other options: Install using the requirements.txt file
 > pipenv install -r requirements.txt
 
-Note: If it does not install, it is most likely due to an out-dated package.
-Check the versions of the packages, delete if not needed, or specify the versions.
+Note: To run on windows locally, go to the [requirements_windows_locally](Dishify/app/requirements_windows_locally) for the requirements.txt file.
+
 
 
 #### Step 3: Open the env
@@ -97,6 +93,8 @@ and, open up a notebook.
 Useful [Lambda Lecture](https://www.youtube.com/watch?v=_VGKzkAEvU0&feature=youtu.be) on how to do this.
 
 Note: Link may not work. If so, refer to the tool-kit in unit-4/sprint-1/day-1 and look for the DS11 Lecture video.
+
+---
 
 ### Git WorkFlow
 All developmental code should be pushed to the 'staging' branch, not masters.
@@ -159,6 +157,8 @@ There are more commands you can use for Git, checkout some of these resourses:
 🧩 [Atlassian](https://www.atlassian.com/git/tutorials/comparing-workflows)
 
 
+---
+
 ### Contributors
 
 🤖 Labs 21 Contributors
@@ -180,6 +180,8 @@ There are more commands you can use for Git, checkout some of these resourses:
 |                         [<img src="https://github.com/favicon.ico" width="15">](https://github.com/NealWhitlock)                          |                     [<img src="https://github.com/favicon.ico" width="15">](https://github.com/RobinSrimal)                      |                         [<img src="https://github.com/favicon.ico" width="15">](https://github.com/Yonipineda)                          |    
 | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/neal-whitlock-4106951a6/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/robin-srimal-a41633135/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/yoni-pineda-8a43841a3/) |
 
+---
+
 ### Project Guide
 Helpful Resources
 
@@ -199,6 +201,8 @@ Note: Ask your TL or SL for access to Notion and/or Trello.
 
 📈 [Labs DS Tips](https://lambda-school-labs.github.io/ds/)
 
+---
+
 ### Tech Stack
 
 [Python 3.7](https://www.python.org/downloads/release/python-374/)
@@ -209,12 +213,14 @@ Note: Ask your TL or SL for access to Notion and/or Trello.
 
 [AWS ElasticBeanstalk](https://aws.amazon.com/elasticbeanstalk/)
 
-
+---
 
 ## API Overview
 
 ### Architecture
 Not Yet Implemented.
+
+---
 
 ### Endpoints
 
@@ -222,6 +228,7 @@ There is only one current deployed version which can be found locally in the Dis
 
 [Deployed AWS Endpoint](https://3z6kv0n0v6.execute-api.us-east-2.amazonaws.com/test/dishify)
 
+---
 
 ### Feature Gif Animation
 
@@ -257,6 +264,7 @@ Description:
   ![Robins Parser Feature](Dishify/multilabel_object_detection/imgs/dish/feature_3.gif)
 
 
+---
 
 ### Presentation Recordings
 
@@ -265,6 +273,7 @@ The Labs23 DataScience Team Recording
 [![MyDish Labs23 DataScience Team Recording](Dishify/multilabel_object_detection/imgs/dish/MyDish_ds.png)](https://www.youtube.com/watch?v=Ny2szy4sqpM&feature=youtu.be)
 
 
+---
 
 ### AWS Guide
 
@@ -276,6 +285,7 @@ To use this endpoint, give the api an image url, like this [one](https://cdn.sho
 #### And, give it a url of an image with text:
 > https://3z6kv0n0v6.execute-api.us-east-2.amazonaws.com/test/dishify?imageURL=https://cdn.shopify.com/s/files/1/1133/5284/products/9781771644761_002_iart.jpg
 
+---
 
 ### Local Testing
 
@@ -284,13 +294,15 @@ On running the API locally using [Flask](https://flask.palletsprojects.com/en/1.
 #### Run the API locally
 
 If not in the API/ directory:
-> cd APi/
+> cd Dishify/app/
 
-Run app.py:
-> python app.py
+Run application.py:
+> uvicorn application:app --reload
 
 #### Execute the unittests
 > python -m unittest discover
+
+---
 
 ### WEB Documentation
 
@@ -298,6 +310,7 @@ See [Backend Documentation](https://github.com/Lambda-School-Labs/mydish-be/blob
 
 See [Front End Documentation](https://github.com/Lambda-School-Labs/mydish-fe/blob/master/README.md) for details on the front end of our project.
 
+---
 
 ## Extra Information
 
@@ -306,6 +319,8 @@ See [Front End Documentation](https://github.com/Lambda-School-Labs/mydish-fe/bl
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
 Please note we have a [code of conduct](./code_of_conduct.md.md). Please follow it in all your interactions with the project.
+
+---
 
 ### Issue Bug Request
 
@@ -318,6 +333,7 @@ Please note we have a [code of conduct](./code_of_conduct.md.md). Please follow 
 ### Feature Requests
 
 We would love to hear from you about new features which would improve this app and further the aims of our project. Please provide as much detail and information as possible to show us why you think your new feature should be implemented.
+
 
 ### Pull Requests
 
