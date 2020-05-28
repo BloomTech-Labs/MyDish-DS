@@ -9,7 +9,7 @@
 - Once installed, follow this [link](https://apps.apple.com/us/app/testflight/id899247664).
 
 - For information on the endpoints deployed to AWS, refer to the [API Overview](#API-Overview) section of this readme.
-- For a visualizations of the features deployed, refer to [Feature Gif Animation](#Feature-Gif-Animation)
+- For a visualization of the deployed features, refer to [Feature Gif Animation](#Feature-Gif-Animation)
 
 ## Content
 - [Project Overview](#Project-Overview)
