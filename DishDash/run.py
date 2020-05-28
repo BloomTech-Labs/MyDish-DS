@@ -7,7 +7,7 @@ from dash.dependencies import Input, Output
 
 # Imports from this application
 from app import app, server
-from pages import index, insights, process, UrlGetter, text_photo_parser, ingred_parser
+from pages import index, UrlGetter, text_photo_parser, ingred_parser
 
 # Navbar docs: https://dash-bootstrap-components.opensource.faculty.ai/l/components/navbar
 navbar = dbc.NavbarSimple(
