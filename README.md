@@ -230,7 +230,7 @@ Not Yet Implemented.
 
 ### Endpoints
 You can test the endpoints via fastapi docs:
-[Fastapi Documention Endpoints](http://dishify2605-env.eba-vdmixjfd.us-east-1.elasticbeanstalk.com/docs)
+[Endpoints](http://dishify2605-env.eba-vdmixjfd.us-east-1.elasticbeanstalk.com/docs)
 
 ---
 
@@ -286,6 +286,12 @@ Go to the directory of the app:
 
 Run application.py  with uvicorn:
 > uvicorn application:app --reload
+
+---
+
+### Future deployment on AWS Elastic Beanstalk
+
+If a future labs team descides to deploy an iteration of the API please consider this [medium article](https://medium.com/@robin.srimal/how-to-fix-a-413-request-entity-too-large-error-on-aws-elastic-beanstalk-ac2bb15f244d) when confronted with a "413 request entity too large error". It provides detailed instructions on how to configure the nginx server. 
 
 ---
 
