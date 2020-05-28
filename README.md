@@ -281,10 +281,10 @@ Run the api locally using [Fastapi](https://fastapi.tiangolo.com/):
 
 #### Run the API locally
 
-If not in the app/ directory:
+Go to the directory of the app:
 > cd Dishify/app/
 
-Run application.py:
+Run application.py  with uvicorn:
 > uvicorn application:app --reload
 
 ---
