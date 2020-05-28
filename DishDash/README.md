@@ -21,3 +21,9 @@ Dash App for the data-science features deployed to our mobile app, now brought t
 ```
 >> python run.py
 ```
+
+---
+
+## How to add pages
+
+Refer to this section of [Ryan Herrs Guide](https://lambdaschool.github.io/ds/unit2/dash-template/#add-a-page)

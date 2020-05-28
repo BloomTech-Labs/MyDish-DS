@@ -16,9 +16,6 @@ navbar = dbc.NavbarSimple(
     children=[
         dbc.NavItem(dcc.Link('Paste a Url!',
                              href='/UrlGetter', className='nav-link')),
-        dbc.NavItem(
-            dcc.Link('Insights', href='/insights', className='nav-link')),
-        dbc.NavItem(dcc.Link('Process', href='/process', className='nav-link')),
         dbc.NavItem(dcc.Link('Feed Us A Photo!',
                              href='/text_photo_parser', className='nav-link')),
         dbc.NavItem(dcc.Link('Name a Dish!',
@@ -78,10 +75,6 @@ def display_page(pathname):
         return index.layout
     elif pathname == '/UrlGetter':
         return UrlGetter.layout
-    elif pathname == '/insights':
-        return insights.layout
-    elif pathname == '/process':
-        return process.layout
     elif pathname == '/text_photo_parser':
         return text_photo_parser.layout
     elif pathname == '/ingred_parser':

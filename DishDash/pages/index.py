@@ -25,7 +25,7 @@ column1 = dbc.Col(
             """
         ),
         dcc.Link(dbc.Button('Make A Recipe!',
-                            color='primary'), href='/predictions')
+                            color='primary'), href='/UrlGetter')
     ],
     md=4,
 )
