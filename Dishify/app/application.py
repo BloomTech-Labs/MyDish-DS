@@ -63,7 +63,7 @@ async def feature(item: StringJson):
 
     """
     #Queries data base from a given name of a recipe, returns ingredients of recipes
-    #with matching title where the ingredients occur in more than 25 % of recipes.
+    #with matching title where the ingredients occur in more than 25 % of recipes. 
     """
 
     item = jsonable_encoder(item)
@@ -79,9 +79,13 @@ async def feature(item: StringJson):
 
     """
     accepts a url of a recipe inside a JSON, scrapes the url, parses the content
-    and returns a JSON with the parsed content.
+    and returns a JSON with the parsed content. 
     """
     item = jsonable_encoder(item)
     url = item['word']
     recipe_json = get_recipe(url)
     return recipe_json
+
+
+
+
