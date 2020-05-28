@@ -249,12 +249,12 @@ Description:
 
 Description:  
 
-  Robins description goes here. Note for Robin: There are to gifs for the recipe link scraper due to size and time limit for recording. First gif is a demonstration of copying a url, the second is pasting it into the app and getting back the results.
+  Copy and paste the url of a recipe you would like to add to your cookbook in the app.
 
   ![Robins Getter Feature](Dishify/multilabel_object_detection/imgs/dish/feature2_copy.gif)
 
 
-  Now paste the link in the MyDish app and recieve your results
+  The ingredients and instruction will be added automatically with the push of a button. 
 
   ![Robins Getter Feature2](Dishify/multilabel_object_detection/imgs/dish/feature2_getter.gif)
 
@@ -263,7 +263,7 @@ Description:
 
 Description:
 
-  Recipe Parser description
+  Upload a picture of the ingredients and/or the instructions of a recipe you like (from a cookbook or even handwritten notes) and content will be saved automatically to your cookbook. 
 
   ![Robins Parser Feature](Dishify/multilabel_object_detection/imgs/dish/feature_3.gif)
 
