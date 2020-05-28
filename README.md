@@ -23,7 +23,6 @@
   - [Endpoints](#Endpoints)
   - [Feature Gif Animation](#Feature-Gif-Animation)
   - [Presentation Recordings](#Presentation-Recordings)
-  - [AWS Guide](#AWS-Guide)
   - [Local Testing](#Local-Testing)
   - [WEB Documentation](#WEB-Documentation)
 - [Extra Information](#Extra-Information)
@@ -223,10 +222,8 @@ Not Yet Implemented.
 ---
 
 ### Endpoints
-
-There is only one current deployed version which can be found locally in the Dishify/ Directory.
-
-[Deployed AWS Endpoint](https://3z6kv0n0v6.execute-api.us-east-2.amazonaws.com/test/dishify)
+You can test the endpoints via fastapi docs.
+[Fastapi Documention Endpoints](http://dishify2605-env.eba-vdmixjfd.us-east-1.elasticbeanstalk.com/docs)
 
 ---
 
@@ -272,24 +269,11 @@ The Labs23 DataScience Team Recording
 
 [![MyDish Labs23 DataScience Team Recording](Dishify/multilabel_object_detection/imgs/dish/MyDish_ds.png)](https://www.youtube.com/watch?v=Ny2szy4sqpM&feature=youtu.be)
 
-
----
-
-### AWS Guide
-
-To use this endpoint, give the api an image url, like this [one](https://cdn.shopify.com/s/files/1/1133/5284/products/9781771644761_002_iart.jpg):
-
-#### After /dishify, in the url, add ?imageURL=:
-> https://3z6kv0n0v6.execute-api.us-east-2.amazonaws.com/test/dishify?imageURL=
-
-#### And, give it a url of an image with text:
-> https://3z6kv0n0v6.execute-api.us-east-2.amazonaws.com/test/dishify?imageURL=https://cdn.shopify.com/s/files/1/1133/5284/products/9781771644761_002_iart.jpg
-
 ---
 
 ### Local Testing
 
-On running the API locally using [Flask](https://flask.palletsprojects.com/en/1.1.x/) and the [Unittests](https://docs.python.org/3/library/unittest.html):
+Run the api locally using [Fastapi](https://fastapi.tiangolo.com/):
 
 #### Run the API locally
 
@@ -298,9 +282,6 @@ If not in the API/ directory:
 
 Run application.py:
 > uvicorn application:app --reload
-
-#### Execute the unittests
-> python -m unittest discover
 
 ---
 
