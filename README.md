@@ -300,7 +300,7 @@ Run application.py  with uvicorn:
 
 ### Future deployment on AWS Elastic Beanstalk
 
-If a future labs team descides to deploy an iteration of the API please consider this [medium article](https://medium.com/@robin.srimal/how-to-fix-a-413-request-entity-too-large-error-on-aws-elastic-beanstalk-ac2bb15f244d) when confronted with a "413 request entity too large error". It provides detailed instructions on how to configure the nginx server. 
+If a future labs team decides to deploy an iteration of the API please consider this [medium article](https://medium.com/@robin.srimal/how-to-fix-a-413-request-entity-too-large-error-on-aws-elastic-beanstalk-ac2bb15f244d) when confronted with a "413 request entity too large error". It provides detailed instructions on how to configure the nginx server. 
 
 ---
 
