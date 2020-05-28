@@ -261,7 +261,7 @@ You can test the endpoints via fastapi docs:
 
 #### Recipe Parser
 
-  Upload a picture of the ingredients and/or the instructions of a recipe you like (from a cookbook or even handwritten notes) and content will be saved automatically to your cookbook. This works for several languages. Especially well for Spanish, French and English. 
+  Upload a picture of the ingredients and/or the instructions of a recipe you like (from a cookbook or even handwritten notes) and the content will be saved automatically to your cookbook. This works for several languages. Especially well for Spanish, French and English. 
 
   ![Robins Parser Feature](Dishify/multilabel_object_detection/imgs/dish/feature_3.gif)
 
