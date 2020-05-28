@@ -14,10 +14,10 @@ Dash App for the data-science features deployed to our mobile app, now brought t
 
 #### change to DishDash directory if not in it.
 ```
-cd DishDash
+>> cd DishDash
 ```
 
 #### run the app locally
 ```
-python run.py
+>> python run.py
 ```
