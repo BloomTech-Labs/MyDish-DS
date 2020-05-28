@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Ingredient Prediction</title>
+        <link rel="stylesheet" href="https://unpkg.com/picnic"/>
+    </head>
+    <body>
+        body {
+            padding-top: 75px;
+        }
+        <nav>
+            <a href="/" class="brand"><span>Ingredient Prediction!</span></a>
+
+            <!-- responsive -->
+            <input id="bmenub" type="checkbox" class="show">
+            <label for="bmenub" class="burger pseudo button">Menu</label>
+
+            <div class="menu">
+                <a href="/" class="success">API Testing</a>
+                <a href="/docs">Documentation</a>
+            </div>
+        </nav>
+        <main>
+            <div>
+                {% block content %}
+                
+                {% endblock %}
+            </div>
+        </main>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/umbrellajs"/> -->
+    </body>
+</html>
