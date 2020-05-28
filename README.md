@@ -236,18 +236,17 @@ You can test the endpoints via fastapi docs:
 
 ### Feature Gif Animation
 
-#### Ingredient Getter: Feature 1
+#### Ingredient Getter
 
-Description:
+
 
   After a user enters a recipe name this feature queries a database of recipes to find all recipes with titles that include words in the entered name. The ingredients are then compared across these matching recipes. Only those ingredients that appear in excess of 25% of recipes are returned. For each ingredient the most common quantity and unit associated with the ingredient are also returned.
 
   ![Neals Getter Feature](Dishify/multilabel_object_detection/imgs/dish/feature_1original.gif)
 
 
-#### Recipe Getter: Feature 2
+#### Recipe Getter
 
-Description:  
 
   Copy and paste the url of a recipe you would like to add to your cookbook in the app.
 
@@ -259,11 +258,9 @@ Description:
   ![Robins Getter Feature2](Dishify/multilabel_object_detection/imgs/dish/feature2_getter.gif)
 
 
-#### Recipe Parser: Feature 3
+#### Recipe Parser
 
-Description:
-
-  Upload a picture of the ingredients and/or the instructions of a recipe you like (from a cookbook or even handwritten notes) and content will be saved automatically to your cookbook. 
+  Upload a picture of the ingredients and/or the instructions of a recipe you like (from a cookbook or even handwritten notes) and content will be saved automatically to your cookbook. This works for several languages. Especially well for Spanish, French and English. 
 
   ![Robins Parser Feature](Dishify/multilabel_object_detection/imgs/dish/feature_3.gif)
 
