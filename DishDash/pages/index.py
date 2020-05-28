@@ -17,9 +17,9 @@ column1 = dbc.Col(
             """
 
             ## Dishify MyDish
-            
-            With Mydish, save and create recipes with the magic of Data Science. Have a recipe saved in a notebook with messy
-            handwriting? No problem. Found a website with an interesting recipe? Copy and paste the url into our app and the
+
+            With Mydish, save and create recipes with the magic of Data Science. Have a handwritten recipe in a Notebook?
+            No problem, just take a photo and feed it to our app. Found a website with an interesting recipe? Copy and paste the url into our app and the
             recipe will be saved instantly. Want it to be saved in Spanish, French, or English? That can be done. MyDish will
             save time and reliably save your recipes.
             """
