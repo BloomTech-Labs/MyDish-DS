@@ -15,7 +15,7 @@ column1 = dbc.Col(
         dcc.Markdown(
             """
 
-            ## Predictions
+            ## Feed us a photo of a recipe, handwritten or screenshot!
             Your instructions: How to use your app to get new predictions.
             """
         ),

@@ -7,18 +7,22 @@ from dash.dependencies import Input, Output
 
 # Imports from this application
 from app import app, server
-from pages import index, predictions, insights, process
+from pages import index, insights, process, UrlGetter, text_photo_parser, ingred_parser
 
 # Navbar docs: https://dash-bootstrap-components.opensource.faculty.ai/l/components/navbar
 navbar = dbc.NavbarSimple(
     brand='MyDish',
     brand_href='/',
     children=[
-        dbc.NavItem(
-            dcc.Link('Predictions', href='/predictions', className='nav-link')),
+        dbc.NavItem(dcc.Link('Paste a Url!',
+                             href='/UrlGetter', className='nav-link')),
         dbc.NavItem(
             dcc.Link('Insights', href='/insights', className='nav-link')),
         dbc.NavItem(dcc.Link('Process', href='/process', className='nav-link')),
+        dbc.NavItem(dcc.Link('Feed Us A Photo!',
+                             href='/text_photo_parser', className='nav-link')),
+        dbc.NavItem(dcc.Link('Name a Dish!',
+                             href='/ingred_parser', className='nav-link')),
     ],
     sticky='top',
     color='light',
@@ -72,12 +76,16 @@ app.layout = html.Div([
 def display_page(pathname):
     if pathname == '/':
         return index.layout
-    elif pathname == '/predictions':
-        return predictions.layout
+    elif pathname == '/UrlGetter':
+        return UrlGetter.layout
     elif pathname == '/insights':
         return insights.layout
     elif pathname == '/process':
         return process.layout
+    elif pathname == '/text_photo_parser':
+        return text_photo_parser.layout
+    elif pathname == '/ingred_parser':
+        return ingred_parser.layout
     else:
         return dcc.Markdown('## Page not found')
 
