@@ -16,7 +16,7 @@ column1 = dbc.Col(
             """
 
             ## Feed us a photo of a recipe, handwritten or screenshot!
-            > Upload a picture of the ingredients and/or the instructions of a recipe you like (from a cookbook or even handwritten notes) and the content will be saved automatically to your cookbook. This works for several languages. Especially well for Spanish, French and English.
+            > Upload a picture of the ingredients and/or the instructions of a recipe you like (from a cookbook or even handwritten notes) and the content will be saved automatically to your cookbook. This works for several languages. Especially well for Spanish, French and English.\n
             """
         ),
         dcc.Upload(
@@ -38,7 +38,7 @@ column1 = dbc.Col(
         ),
         dcc.Markdown(
             """
-        [How to Upload?](/text_photo_parser)
+        [Try This Sample Photo!](/assets/ingredients2.png)
         """
         ),
         html.Hr(),
