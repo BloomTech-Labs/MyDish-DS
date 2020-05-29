@@ -10,12 +10,11 @@ import plotly.express as px
 from app import app
 
 # HEADER -> Add to Layout to include in the app
-'''
 header = dbc.Col(
     [
         dcc.Markdown(
             """
-        ![header](/assets/crop_head2.png)
+        ![header](/assets/dance_hoorah.gif)
         """
         ),
     ],
@@ -24,7 +23,7 @@ header = dbc.Col(
         'textAlign': 'center',
     }
 )
-'''
+
 
 # 2 column layout. 1st column width = 4/12
 # https://dash-bootstrap-components.opensource.faculty.ai/l/components/layout
@@ -39,7 +38,7 @@ column1 = dbc.Col(
             No problem, just take a photo and feed it to our app. Found a website with an interesting recipe? Copy and paste the url into our app and the
             recipe will be saved instantly. Want it to be saved in Spanish, French, or English? That can be done. MyDish will
             save time and reliably save your recipes.
-            
+
             """
         ),
         dcc.Link(dbc.Button('Make A Recipe!',
@@ -65,4 +64,4 @@ column2 = dbc.Col(
 )
 
 # dbc.Row([header]) <- Add to layout for a header.
-layout = dbc.Row([column1, column2])
+layout = dbc.Row([column1, column2]), dbc.Row([header])
