@@ -14,11 +14,11 @@ navbar = dbc.NavbarSimple(
     brand='MyDish',
     brand_href='/',
     children=[
-        dbc.NavItem(dcc.Link('Paste a Url!',
+        dbc.NavItem(dcc.Link('Paste A Url!',
                              href='/UrlGetter', className='nav-link')),
         dbc.NavItem(dcc.Link('Feed Us A Photo!',
                              href='/text_photo_parser', className='nav-link')),
-        dbc.NavItem(dcc.Link('Name a Dish!',
+        dbc.NavItem(dcc.Link('Name A Dish!',
                              href='/ingred_parser', className='nav-link')),
     ],
     sticky='top',
