@@ -262,14 +262,14 @@ In addition the labs21 team created a clone of the backend and hosted it on AWS 
   ![Robins Getter Feature](Dishify/multilabel_object_detection/imgs/dish/feature2_copy.gif)
 
 
-  The ingredients and instruction will be added automatically with the press of a button. 
+  The ingredients and instruction will be added automatically with the press of a button.
 
   ![Robins Getter Feature2](Dishify/multilabel_object_detection/imgs/dish/feature2_getter.gif)
 
 
 #### Recipe Parser
 
-  Upload a picture of the ingredients and/or the instructions of a recipe you like (from a cookbook or even handwritten notes) and the content will be saved automatically to your cookbook. This works for several languages. Especially well for Spanish, French and English. 
+  Upload a picture of the ingredients and/or the instructions of a recipe you like (from a cookbook or even handwritten notes) and the content will be saved automatically to your cookbook. This works for several languages. Especially well for Spanish, French and English.
 
   ![Robins Parser Feature](Dishify/multilabel_object_detection/imgs/dish/feature_3.gif)
 
@@ -281,6 +281,11 @@ In addition the labs21 team created a clone of the backend and hosted it on AWS 
 The Labs23 DataScience Team Recording
 
 [![MyDish Labs23 DataScience Team Recording](Dishify/multilabel_object_detection/imgs/dish/MyDish_ds.png)](https://www.youtube.com/watch?v=Ny2szy4sqpM&feature=youtu.be)
+
+
+The Labs23 MyDish Shark Tank Demo
+
+[![MyDish Labs23 DataScience Team Recording](Dishify/multilabel_object_detection/imgs/dish/sharktank.png)]([![MyDish Labs23 MyDish Shark Tank](Dishify/multilabel_object_detection/imgs/dish/MyDish_ds.png)](https://www.youtube.com/watch?v=Ny2szy4sqpM&feature=youtu.be))
 
 ---
 
@@ -300,7 +305,7 @@ Run application.py  with uvicorn:
 
 ### Future deployment on AWS Elastic Beanstalk
 
-If a future labs team decides to deploy an iteration of the API please consider this [medium article](https://medium.com/@robin.srimal/how-to-fix-a-413-request-entity-too-large-error-on-aws-elastic-beanstalk-ac2bb15f244d) when confronted with a "413 request entity too large error". It provides detailed instructions on how to configure the nginx server. 
+If a future labs team decides to deploy an iteration of the API please consider this [medium article](https://medium.com/@robin.srimal/how-to-fix-a-413-request-entity-too-large-error-on-aws-elastic-beanstalk-ac2bb15f244d) when confronted with a "413 request entity too large error". It provides detailed instructions on how to configure the nginx server.
 
 ---
 
