@@ -45,16 +45,99 @@ column2 = dbc.Col(
                  style={'marginBottom': '3em', 'fontWeight': 'bold', 'fontSize': '20px'}),
         html.Div(id='prediction-table', style={'marginBottom': '5em'}),
 
-        dcc.Link(dbc.Button('Go To Feed Us A Photo!',
-                            color='primary'), href='/text_photo_parser')
+
     ],
     md=5,
 )
 
 column3 = dbc.Col(
     [
+        dcc.Dropdown(
+            options=[
+                {'label': 'name', 'value': 'name'},
+                {'label': 'ingredient', 'value': 'ingredient'},
+                {'label': 'unit', 'value': 'unit'},
+                {'label': 'instructions', 'value': 'instruction'}
+            ],
+            multi=True,
+            value="name"
+
+
+        ),
+
+
 
     ]
 )
 
-layout = dbc.Row([column1, column2])
+column4 = dbc.Col(
+    [
+        dcc.Dropdown(
+            options=[
+                {'label': 'name', 'value': 'name'},
+                {'label': 'ingredient', 'value': 'ingredient'},
+                {'label': 'unit', 'value': 'unit'},
+                {'label': 'instructions', 'value': 'instruction'}
+            ],
+            multi=True,
+            value="ingredient"
+
+
+        ),
+
+
+    ]
+)
+
+column5 = dbc.Col(
+    [
+        dcc.Dropdown(
+            options=[
+                {'label': 'name', 'value': 'name'},
+                {'label': 'ingredient', 'value': 'ingredient'},
+                {'label': 'unit', 'value': 'unit'},
+                {'label': 'instructions', 'value': 'instruction'}
+            ],
+            multi=True,
+            value="unit"
+
+
+        ),
+
+
+
+    ]
+)
+
+
+column6 = dbc.Col(
+    [
+        dcc.Dropdown(
+            options=[
+                {'label': 'name', 'value': 'name'},
+                {'label': 'ingredient', 'value': 'ingredient'},
+                {'label': 'unit', 'value': 'unit'},
+                {'label': 'instructions', 'value': 'instructions'}
+            ],
+            multi=True,
+            value="instructions"
+
+
+        ),
+
+
+
+
+
+    ]
+)
+
+column7 = dbc.Col(
+    [
+        dcc.Link(dbc.Button('Go To Feed Us A Photo!',
+                            color='primary'), href='/text_photo_parser')
+    ]
+)
+
+layout = dbc.Row([column1, column2]), dbc.Row(
+    [column3, column4]), dbc.Row([column5, column6]), dbc.Row(column7)
