@@ -1,6 +1,7 @@
 import dash
 import dash_bootstrap_components as dbc
 
+
 """
 https://github.com/facultyai/dash-bootstrap-components
 dash-bootstrap-components provides Bootstrap components.

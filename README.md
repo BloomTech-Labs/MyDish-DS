@@ -285,7 +285,7 @@ In addition the labs21 team created a clone of the backend and hosted it on AWS 
 
 ##### The Labs23 MyDish Shark Tank Demo
 
-[![MyDish Labs23 DataScience Team Recording](Dishify/multilabel_object_detection/imgs/dish/sharktank.png)](https://www.youtube.com/watch?v=yG_td_GyA7w&feature=youtu.be))
+[![MyDish Labs23 DataScience Team Recording](Dishify/multilabel_object_detection/imgs/dish/sharktank.png)](https://www.youtube.com/watch?v=yG_td_GyA7w&feature=youtu.be)
 
 ---
 

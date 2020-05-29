@@ -1,6 +1,8 @@
 -i https://pypi.org/simple
 
 fastapi
+uvicorn
+text2num
 
 hSpy
 imageio
