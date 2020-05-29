@@ -3,7 +3,7 @@ import dash
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 
 # Imports from this application
 from app import app
@@ -16,11 +16,38 @@ column1 = dbc.Col(
             """
 
             ## Feed us a photo of a recipe, handwritten or screenshot!
-            Your instructions: How to use your app to get new predictions.
+            > Upload a picture of the ingredients and/or the instructions of a recipe you like (from a cookbook or even handwritten notes) and the content will be saved automatically to your cookbook. This works for several languages. Especially well for Spanish, French and English.
             """
         ),
+        dcc.Upload(
+            id='upload-data',
+            children=html.Div([
+                'Drag and Drop or ',
+                html.A('Select a File')
+            ]),
+            style={
+                'width': '100%',
+                'height': '60px',
+                'lineHeight': '60px',
+                'borderWidth': '1px',
+                'borderStyle': 'dashed',
+                'borderRadius': '5px',
+                'text-align': 'center',
+                'margin': '10px'
+            }
+        ),
+        dcc.Markdown(
+            """
+        [How to Upload?](/text_photo_parser)
+        """
+        ),
+        html.Hr(),
+        html.Div(id='output-data-upload')
     ],
-    md=4,
+    style={
+        'text-align': 'center'
+    },
+    md=12,
 )
 
 column2 = dbc.Col(
