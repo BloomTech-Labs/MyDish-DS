@@ -1,0 +1,6 @@
+dash==1.9.1
+dash-bootstrap-components
+dash-daq
+gunicorn
+plotly
+pandas

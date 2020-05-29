@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+{% block content %}
+<article class="flex two" style="padding: 3em 1em;">
+   <div>
+       <h1>Test API:</h1>
+       <form action = "./result" method = "POST">
+           <p><input type = "text" name = "1" /></p>
+           <p><input type = "text" name = "2" /></p>
+           <p><input type = "text" name = "3" /></p>
+           <p><input type = "text" name = "4" /></p>
+           <p><input type = "text" name = "5" /></p>
+           <p><input type = "submit" value = "submit" /></p>
+       </form>
+   </div>
+</article>
+{% endblock %}

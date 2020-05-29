@@ -1,0 +1,12 @@
+{% extends "main.html" %}
+{% block content %}
+<a href="/">-- back --</a>
+<ul border = 1>
+   {% for i in result %}
+      <ul>
+         <th> {{ i }} </th>
+      </ul>
+   {% endfor %}
+</ul>
+
+{% endblock %}
