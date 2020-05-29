@@ -38,6 +38,11 @@ footer = dbc.Container(
         dbc.Col(
             html.P(
                 [
+
+                    html.Span('MyDish', className='mr-2'),
+                    html.A(html.I(className='fab fa-github-square mr-1'),
+                           href='https://github.com/Lambda-School-Labs/MyDish-DS/tree/master'),
+
                     html.Span('Yoni Pineda', className='mr-2'),
                     html.A(html.I(className='fas fa-envelope-square mr-1'),
                            href='mailto:yonipined@icloud.com'),
@@ -61,6 +66,7 @@ footer = dbc.Container(
                            href='https://github.com/NealWhitlock'),
                     html.A(html.I(className='fab fa-linkedin mr-1'),
                            href='https://www.linkedin.com/in/neal-whitlock-4106951a6/'),
+
 
                 ],
                 className='lead'
