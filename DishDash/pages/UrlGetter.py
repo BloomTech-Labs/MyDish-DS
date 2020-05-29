@@ -16,7 +16,7 @@ column1 = dbc.Col(
             """
 
             ## Paste a Url of a recipe site!
-            First, Copy and paste the url of a recipe you would like to add to your cookbook in the app. 
+            First, Copy and paste the url of a recipe you would like to add to your cookbook in the app.
             Then the ingredients and instruction will be added automatically with the press of a button.
             """
         ),
@@ -44,6 +44,9 @@ column2 = dbc.Col(
         html.Div(id='prediction-label', className='lead',
                  style={'marginBottom': '3em', 'fontWeight': 'bold', 'fontSize': '20px'}),
         html.Div(id='prediction-table', style={'marginBottom': '5em'}),
+
+        dcc.Link(dbc.Button('Go To Feed Us A Photo!',
+                            color='primary'), href='/text_photo_parser')
     ],
     md=5,
 )

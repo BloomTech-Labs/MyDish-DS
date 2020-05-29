@@ -42,7 +42,10 @@ column1 = dbc.Col(
         """
         ),
         html.Hr(),
-        html.Div(id='output-data-upload')
+        html.Div(id='output-data-upload'),
+
+        dcc.Link(dbc.Button('Go To Name A Dish!',
+                            color='primary'), href='/ingred_parser')
     ],
     style={
         'text-align': 'center'

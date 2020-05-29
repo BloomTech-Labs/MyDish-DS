@@ -46,6 +46,9 @@ column2 = dbc.Col(
         html.Div(id='prediction-label', className='lead',
                  style={'marginBottom': '3em', 'fontWeight': 'bold', 'fontSize': '20px'}),
         html.Div(id='prediction-table', style={'marginBottom': '5em'}),
+
+        dcc.Link(dbc.Button('Go To MyDish Homepage!',
+                            color='primary'), href='/')
     ],
     md=5,
 )
