@@ -16,7 +16,8 @@ column1 = dbc.Col(
             """
 
             ## Paste a Url of a recipe site!
-            Your instructions: How to use your app to get new predictions.
+            First, Copy and paste the url of a recipe you would like to add to your cookbook in the app. 
+            Then the ingredients and instruction will be added automatically with the press of a button.
             """
         ),
     ],
@@ -24,6 +25,30 @@ column1 = dbc.Col(
 )
 
 column2 = dbc.Col(
+    [
+        dcc.Markdown('## Enter A URL Below:',
+                     className='mb-5', style={'marginTop': '1em'}),
+        dcc.Textarea(
+            id='input-box',
+            placeholder='Url please!',
+            value='Url please!',
+            cols=5,
+            rows=2,
+            maxLength=280,
+            style={'width': '100%', 'marginBottom': '1.2em'}
+        ),
+        html.Button('Make My Recipe!', id='button', n_clicks=1, style={
+            'width': '10em', 'padding': '5px', 'marginBottom': '4em'}),
+        dcc.Markdown('### Recipe:',
+                     style={'marginBottom': '2em'}),
+        html.Div(id='prediction-label', className='lead',
+                 style={'marginBottom': '3em', 'fontWeight': 'bold', 'fontSize': '20px'}),
+        html.Div(id='prediction-table', style={'marginBottom': '5em'}),
+    ],
+    md=5,
+)
+
+column3 = dbc.Col(
     [
 
     ]

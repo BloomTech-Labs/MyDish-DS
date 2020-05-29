@@ -28,6 +28,30 @@ column1 = dbc.Col(
 
 column2 = dbc.Col(
     [
+        dcc.Markdown('## Enter A Dish Name Below:',
+                     className='mb-5', style={'marginTop': '1em'}),
+        dcc.Textarea(
+            id='input-box',
+            placeholder='Enter the name of a dish. . .',
+            value='Waffle',
+            cols=5,
+            rows=2,
+            maxLength=280,
+            style={'width': '100%', 'marginBottom': '1.2em'}
+        ),
+        html.Button('Make My Recipe!', id='button', n_clicks=1, style={
+            'width': '10em', 'padding': '5px', 'marginBottom': '4em'}),
+        dcc.Markdown('### Recipe:',
+                     style={'marginBottom': '2em'}),
+        html.Div(id='prediction-label', className='lead',
+                 style={'marginBottom': '3em', 'fontWeight': 'bold', 'fontSize': '20px'}),
+        html.Div(id='prediction-table', style={'marginBottom': '5em'}),
+    ],
+    md=5,
+)
+
+column3 = dbc.Col(
+    [
 
     ]
 )
