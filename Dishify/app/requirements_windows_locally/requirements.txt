@@ -17,7 +17,7 @@ html5lib==1.0.1
 idna==2.9
 isodate==0.6.0
 language-tags==1.0.0
-lxml==4.5.0
+lxml==4.6.5
 mf2py==1.1.2
 Pillow==7.1.2
 protobuf==3.11.3
